@@ -1,7 +1,7 @@
 import Home from "../pages/home";
 import Product from "../pages/product";
 import Cart from "../pages/cart";
-import NotFound from "../pages/not-found";
+import NotFound from "../pages/not-found/not-found";
 
 const routes = [
   { path: "/", component: Home },

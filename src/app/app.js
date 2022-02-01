@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1>Welcome to Scandiweb Junior React Developer Assignment</h1>
+        {/* <h1>Welcome to Scandiweb Junior React Developer Assignment</h1> */}
         <Routes>
           {routes.map((route, index) => (
             <Route
