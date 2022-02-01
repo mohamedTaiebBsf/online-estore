@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.header`
   padding: 0 6.25rem;
 `;
 
@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  padding: 0.625rem 0;
 `;
 
 const Logo = styled.img``;

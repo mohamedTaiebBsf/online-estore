@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Categories from "../categories/categories";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -16,6 +17,7 @@ class Header extends Component {
     return (
       <Container>
         <Wrapper>
+          <Categories />
           <Link to="/">
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
