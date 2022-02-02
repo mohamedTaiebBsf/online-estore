@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Spinner from "../components/UI/spinner/spinner";
-import { GET_CATEGORIES } from "../schemas/categorySchema";
+import {
+  GET_CATEGORIES,
+  GET_CATEGORY_PRODUCTS,
+} from "../schemas/categorySchema";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 
@@ -17,8 +20,10 @@ const HttpProvider = class extends Component {
   }
 };
 
-const handleQuery = (WrappedComponent, schema) =>
-  graphql(schema)(
+const handleQuery = (WrappedComponent, schema, options = null) =>
+  graphql(schema, {
+    options: options,
+  })(
     class extends Component {
       renderData = () => {
         const { data } = this.props;
@@ -38,4 +43,7 @@ const handleQuery = (WrappedComponent, schema) =>
 const withCategories = (WrappedCompoent) =>
   handleQuery(WrappedCompoent, GET_CATEGORIES);
 
-export { HttpProvider, withCategories };
+const withProducts = (WrappedCompoent, options) =>
+  handleQuery(WrappedCompoent, GET_CATEGORY_PRODUCTS, options);
+
+export { HttpProvider, withCategories, withProducts };
