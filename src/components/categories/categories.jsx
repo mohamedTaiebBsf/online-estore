@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import Category from "./category/category";
+import { withCategories } from "../../services/http-service";
 import { Container } from "./styles";
-
-const categories = [{ name: "all" }, { name: "clothes" }, { name: "tech" }];
-
 class Categories extends Component {
   render() {
-    // const { selectedCategory } = this.props;
-    const selectedCategory = "clothes";
+    const { categories } = this.props.data;
+
     return (
       <Container>
         {categories.map((category, index) => (
           <Category
             key={index}
             category={category}
-            active={selectedCategory === category.name}
+            active={"clothes" === category.name}
           />
         ))}
       </Container>
@@ -22,4 +20,4 @@ class Categories extends Component {
   }
 }
 
-export default Categories;
+export default withCategories(Categories);
