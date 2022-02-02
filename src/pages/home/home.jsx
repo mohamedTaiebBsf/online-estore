@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Layout from "./layout";
-import withNavigation from "../hoc/navigation";
+import Layout from "../layout/layout";
+import withNavigation from "../../hoc/navigation";
+import { Title } from "./styles";
 
 class Home extends Component {
   state = {
@@ -20,7 +21,7 @@ class Home extends Component {
   render() {
     return (
       <Layout category={this.state.selectedCategory}>
-        <div>Home</div>
+        <Title>{this.state.selectedCategory}</Title>
       </Layout>
     );
   }
