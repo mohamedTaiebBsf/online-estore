@@ -26,7 +26,7 @@ const handleQuery = (WrappedComponent, schema) =>
         if (data.loading) return <Spinner />;
         if (data.error) return <h1>{data.error.message}</h1>;
 
-        return <WrappedComponent data={data} />;
+        return <WrappedComponent data={data} {...this.props} />;
       };
 
       render() {

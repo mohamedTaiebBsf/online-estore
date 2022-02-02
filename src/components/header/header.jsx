@@ -17,7 +17,7 @@ class Header extends Component {
     return (
       <Container>
         <Wrapper>
-          <Categories />
+          <Categories category={this.props.category} />
           <Link to="/">
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>

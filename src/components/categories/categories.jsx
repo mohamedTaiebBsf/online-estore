@@ -12,7 +12,7 @@ class Categories extends Component {
           <Category
             key={index}
             category={category}
-            active={"clothes" === category.name}
+            active={this.props.category === category.name}
           />
         ))}
       </Container>

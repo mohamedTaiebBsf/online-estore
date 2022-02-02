@@ -5,7 +5,7 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
+        <Header category={this.props.category} />
         {this.props.children}
       </React.Fragment>
     );
