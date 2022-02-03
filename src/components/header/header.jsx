@@ -11,6 +11,7 @@ import {
   CurrencySymbol,
   Arrows,
 } from "./styles";
+import Currencies from "../currencies/currencies";
 
 class Header extends Component {
   render() {
@@ -23,13 +24,15 @@ class Header extends Component {
           </Link>
           <Wrapper>
             <CurrencySymbol>
-              $<Arrows src="/assets/images/arrow-down.svg" alt="arrow" />
+              {this.props.currency}
+              <Arrows src="/assets/images/arrow-down.svg" alt="arrow" />
             </CurrencySymbol>
             <CartContainer>
               <CartIcon src="/assets/images/cart-icon.svg" />
               <CartBadge>2</CartBadge>
             </CartContainer>
           </Wrapper>
+          <Currencies />
         </Wrapper>
       </Container>
     );

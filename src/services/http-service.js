@@ -3,7 +3,8 @@ import Spinner from "../components/UI/spinner/spinner";
 import {
   GET_CATEGORIES,
   GET_CATEGORY_PRODUCTS,
-} from "../schemas/categorySchema";
+  GET_CURRENCIES,
+} from "../schemas";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 
@@ -46,4 +47,7 @@ const withCategories = (WrappedCompoent) =>
 const withProducts = (WrappedCompoent, options) =>
   handleQuery(WrappedCompoent, GET_CATEGORY_PRODUCTS, options);
 
-export { HttpProvider, withCategories, withProducts };
+const withCurrencies = (WrappedCompoent) =>
+  handleQuery(WrappedCompoent, GET_CURRENCIES);
+
+export { HttpProvider, withCategories, withProducts, withCurrencies };

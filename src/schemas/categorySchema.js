@@ -10,7 +10,7 @@ const GET_CATEGORIES = gql`
 
 const GET_CATEGORY_PRODUCTS = gql`
   query GetCategoryProducts($categoryName: String!) {
-    category(input: {title: $categoryName}) {
+    category(input: { title: $categoryName }) {
       name
       products {
         id
