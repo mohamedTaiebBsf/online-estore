@@ -9,7 +9,7 @@ import { graphql } from "@apollo/client/react/hoc";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND_URL,
-  cache: new InMemoryCache({ addTypename: true }),
+  cache: new InMemoryCache({ addTypename: false }),
 });
 
 const HttpProvider = class extends Component {

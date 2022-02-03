@@ -1,11 +1,19 @@
 import React, { Component } from "react";
+import Product from "./product/product";
 import { withProducts } from "../../services/http-service";
+import { Container } from "./styles";
 
 class Products extends Component {
   render() {
     const { products } = this.props.data.category;
 
-    return products.map((product) => <h1 key={product.id}>{product.name}</h1>);
+    return (
+      <Container>
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
+      </Container>
+    );
   }
 }
 
