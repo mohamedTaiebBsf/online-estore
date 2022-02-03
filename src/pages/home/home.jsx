@@ -7,6 +7,21 @@ import Products from "../../components/products/products";
 class Home extends Component {
   state = {
     selectedCategory: "",
+    currentCurrency: "$",
+    showCurrencies: false,
+  };
+
+  toggleCurrency = () => {
+    this.setState((prevState) => ({
+      showCurrencies: !prevState.showCurrencies,
+    }));
+  };
+
+  switchCurrency = (symbol) => {
+    this.setState({
+      showCurrencies: false,
+      currentCurrency: symbol,
+    });
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -20,10 +35,21 @@ class Home extends Component {
   }
 
   render() {
+    const { selectedCategory, currentCurrency, showCurrencies } = this.state;
+
     return (
-      <Layout category={this.state.selectedCategory}>
-        <Title>{this.state.selectedCategory}</Title>
-        <Products category={this.state.selectedCategory} />
+      <Layout
+        category={selectedCategory}
+        current={currentCurrency}
+        show={showCurrencies}
+        toggle={this.toggleCurrency}
+        switch={this.switchCurrency}
+      >
+        <Title>{selectedCategory}</Title>
+        <Products
+          category={selectedCategory}
+          currentCurrency={currentCurrency}
+        />
       </Layout>
     );
   }

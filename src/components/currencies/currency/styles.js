@@ -4,6 +4,11 @@ const Container = styled.li`
   text-align: center;
   padding: 0.625rem;
 
+  &.active {
+    background: var(--gray-secondary);
+    color: var(--white);
+  }
+
   &:last-child {
     margin-bottom: 0;
   }

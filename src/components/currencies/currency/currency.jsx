@@ -6,7 +6,10 @@ class Currency extends Component {
     const { symbol, label } = this.props.currency;
 
     return (
-      <Container>
+      <Container
+        onClick={() => this.props.switch(symbol)}
+        className={this.props.active && "active"}
+      >
         <Text>{symbol}</Text>
         <Text>{label}</Text>
       </Container>

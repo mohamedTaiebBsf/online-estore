@@ -23,16 +23,24 @@ class Header extends Component {
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
           <Wrapper>
-            <CurrencySymbol>
+            <CurrencySymbol onClick={this.props.toggle}>
               {this.props.currency}
-              <Arrows src="/assets/images/arrow-down.svg" alt="arrow" />
+              <Arrows
+                src="/assets/images/arrow.svg"
+                alt="arrow"
+                $show={this.props.show}
+              />
             </CurrencySymbol>
             <CartContainer>
               <CartIcon src="/assets/images/cart-icon.svg" />
               <CartBadge>2</CartBadge>
             </CartContainer>
           </Wrapper>
-          <Currencies />
+          <Currencies
+            currency={this.props.currency}
+            show={this.props.show}
+            switch={this.props.switch}
+          />
         </Wrapper>
       </Container>
     );

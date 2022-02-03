@@ -13,8 +13,18 @@ import {
 } from "./styles";
 
 class Product extends Component {
+  displayPrice = (prices) => {
+    const { currentCurrency } = this.props;
+
+    const price = prices.find(
+      (price) => currentCurrency === price.currency.symbol
+    );
+
+    return `${price.currency.symbol}${price.amount}`;
+  };
+
   render() {
-    const { gallery, brand, name, inStock, id } = this.props.product;
+    const { gallery, brand, name, inStock, id, prices } = this.props.product;
 
     return (
       <Container $inStock={inStock}>
@@ -43,7 +53,7 @@ class Product extends Component {
             {brand} - {name}
           </Title>
         </Anchor>
-        <Price>$150</Price>
+        <Price>{this.displayPrice(prices)}</Price>
       </Container>
     );
   }

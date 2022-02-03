@@ -45,11 +45,13 @@ const CurrencySymbol = styled.span`
   font-weight: 500;
   font-size: 1.125rem;
   cursor: pointer;
+  z-index: 2;
 `;
 
 const Arrows = styled.img`
   width: 0.625rem;
   margin-left: 0.5rem;
+  transform: ${(props) => (props.$show ? "rotate(180deg)" : "none")};
 `;
 
 export {
