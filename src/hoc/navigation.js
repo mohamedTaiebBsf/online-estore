@@ -5,11 +5,36 @@
  */
 
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { connect } from "../store";
 
-const withNavigation = (WrappedComponent) => (props) => {
-  const params = useParams();
+const mapStateToProps = (state) => ({
+  categ: state.selectedCategory,
+});
 
-  return <WrappedComponent {...props} params={params} />;
-};
+const mapDispatchToProps = (dispatch) => ({
+  setCategory: (category) =>
+    dispatch({ type: "SET_SELECTED_CATEGORY", payload: category }),
+});
+
+const withNavigation = (WrappedComponent) =>
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )((props) => {
+    const params = useParams();
+
+    useEffect(() => {
+      if (Object.keys(params).length === 0) {
+        props.setCategory("all");
+      } else if (!Object.keys(params).includes("category")) {
+        props.setCategory(props.categ);
+      } else {
+        props.setCategory(params.category);
+      }
+    }, [params, props]);
+
+    return <WrappedComponent {...props} params={params} />;
+  });
 
 export default withNavigation;

@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import Product from "./product/product";
 import { withProducts } from "../../services/http-service";
+import { connect } from "../../store";
 import { Container } from "./styles";
 
 class Products extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    const { category, currentCurrency } = this.props;
+    const { categ, curr } = this.props;
     const { name } = this.props.data.category;
 
     if (
-      category !== nextProps.category ||
-      currentCurrency !== nextProps.currentCurrency ||
+      categ !== nextProps.categ ||
+      curr !== nextProps.curr ||
       name !== nextProps.data.category.name
     )
       return true;
@@ -19,7 +20,7 @@ class Products extends Component {
 
   render() {
     const { products } = this.props.data.category;
-    console.log(products);
+    console.log("Products", this.props);
 
     return (
       <Container>
@@ -27,7 +28,7 @@ class Products extends Component {
           <Product
             key={product.id}
             product={product}
-            currentCurrency={this.props.currentCurrency}
+            currentCurrency={this.props.curr}
           />
         ))}
       </Container>
@@ -35,10 +36,17 @@ class Products extends Component {
   }
 }
 
-export default withProducts(Products, (props) => {
-  return {
-    variables: {
-      categoryName: props.category,
-    },
-  };
+const mapStateToProps = (state) => ({
+  curr: state.currentCurrency,
+  categ: state.selectedCategory,
 });
+
+export default connect(mapStateToProps)(
+  withProducts(Products, (props) => {
+    return {
+      variables: {
+        categoryName: props.categ,
+      },
+    };
+  })
+);

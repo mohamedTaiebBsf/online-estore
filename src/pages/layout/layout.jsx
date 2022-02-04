@@ -6,13 +6,7 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header
-          category={this.props.category}
-          currency={this.props.current}
-          show={this.props.show}
-          toggle={this.props.toggle}
-          switch={this.props.switch}
-        />
+        <Header />
         <Container>{this.props.children}</Container>
       </React.Fragment>
     );
