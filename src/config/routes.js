@@ -1,5 +1,5 @@
 import Home from "../pages/home/home";
-import Product from "../pages/product";
+import Product from "../pages/product-details/productDetails";
 import Cart from "../pages/cart";
 import NotFound from "../pages/not-found/not-found";
 

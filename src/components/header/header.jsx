@@ -16,7 +16,7 @@ import Currencies from "../currencies/currencies";
 
 class Header extends Component {
   render() {
-    console.log("Header:", this.props.curr);
+    console.log("Header:", this.props.curr, this.props);
     return (
       <Container>
         <Wrapper>

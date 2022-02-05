@@ -20,7 +20,7 @@ class Products extends Component {
 
   render() {
     const { products } = this.props.data.category;
-    console.log("Products", this.props);
+    console.log("Products", this.props, products);
 
     return (
       <Container>

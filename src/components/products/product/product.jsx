@@ -11,18 +11,9 @@ import {
   Notif,
   Anchor,
 } from "./styles";
+import { displayPrice } from "../../../utils";
 
 class Product extends Component {
-  displayPrice = (prices) => {
-    const { currentCurrency } = this.props;
-
-    const price = prices.find(
-      (price) => currentCurrency === price.currency.symbol
-    );
-
-    return `${price.currency.symbol}${price.amount}`;
-  };
-
   render() {
     const { gallery, brand, name, inStock, id, prices } = this.props.product;
 
@@ -53,7 +44,7 @@ class Product extends Component {
             {brand} - {name}
           </Title>
         </Anchor>
-        <Price>{this.displayPrice(prices)}</Price>
+        <Price>{displayPrice(prices, this.props.currentCurrency)}</Price>
       </Container>
     );
   }

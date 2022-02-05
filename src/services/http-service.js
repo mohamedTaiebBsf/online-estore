@@ -4,6 +4,7 @@ import {
   GET_CATEGORIES,
   GET_CATEGORY_PRODUCTS,
   GET_CURRENCIES,
+  GET_PRODUCT_DETAILS,
 } from "../schemas";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
@@ -50,4 +51,13 @@ const withProducts = (WrappedCompoent, options) =>
 const withCurrencies = (WrappedCompoent) =>
   handleQuery(WrappedCompoent, GET_CURRENCIES);
 
-export { HttpProvider, withCategories, withProducts, withCurrencies };
+const withProductDetails = (WrappedCompoent, options) =>
+  handleQuery(WrappedCompoent, GET_PRODUCT_DETAILS, options);
+
+export {
+  HttpProvider,
+  withCategories,
+  withProducts,
+  withCurrencies,
+  withProductDetails,
+};

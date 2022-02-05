@@ -34,7 +34,7 @@ const withNavigation = (WrappedComponent) =>
       }
     }, [params, props]);
 
-    return <WrappedComponent {...props} params={params} />;
+    return <WrappedComponent params={params} />;
   });
 
 export default withNavigation;
