@@ -18,6 +18,10 @@ class Products extends Component {
     else return false;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log("CDU:", prevProps.data.category.products);
+  }
+
   render() {
     const { products } = this.props.data.category;
     console.log("Products", this.props, products);

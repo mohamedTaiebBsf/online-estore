@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import routes from "../config/routes";
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { HttpProvider } from "../services/http-service";
 import { StoreProvider } from "../store";
 import "./app.css";
@@ -10,15 +10,16 @@ class App extends Component {
     return (
       <StoreProvider>
         <HttpProvider>
-          <Routes>
+          <Switch>
             {routes.map((route, index) => (
               <Route
+                exact
                 key={index}
                 path={route.path}
-                element={<route.component />}
+                render={(props) => <route.component {...props} />}
               />
             ))}
-          </Routes>
+          </Switch>
         </HttpProvider>
       </StoreProvider>
     );

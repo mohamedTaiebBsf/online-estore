@@ -1,11 +1,4 @@
-/**
- * This navigation HOC is implemented because It is not allowed
- * to use functional components and their hooks and React Router
- * Dom version 6 does not support class-based components
- */
-
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import React, { Component } from "react";
 import { connect } from "../store";
 
 const mapStateToProps = (state) => ({
@@ -21,20 +14,30 @@ const withNavigation = (WrappedComponent) =>
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )((props) => {
-    const params = useParams();
+  )(
+    class extends Component {
+      state = {};
 
-    useEffect(() => {
-      if (Object.keys(params).length === 0) {
-        props.setCategory("all");
-      } else if (!Object.keys(params).includes("category")) {
-        props.setCategory(props.categ);
-      } else {
-        props.setCategory(params.category);
+      static getDerivedStateFromProps(props, state) {
+        const params = props.match.params;
+
+        if (Object.keys(params).length === 0) {
+          props.setCategory("all");
+        } else if (!Object.keys(params).includes("category")) {
+          props.setCategory(props.categ);
+        } else {
+          props.setCategory(params.category);
+        }
+
+        return state;
       }
-    }, [params, props]);
 
-    return <WrappedComponent params={params} />;
-  });
+      render() {
+        const { category } = this.props.match.params;
+        console.log("WithNavigation: ", this.props, category);
+        return <WrappedComponent params={this.props.match.params} />;
+      }
+    }
+  );
 
 export default withNavigation;
