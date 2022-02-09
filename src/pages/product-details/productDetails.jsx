@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import withNavigation from "../../hoc/navigation";
 import Layout from "../layout/layout";
 import Attributes from "../../components/attributes/attributes";
 import ProductImages from "../../components/product-images/productImages";
@@ -20,7 +19,7 @@ import { displayPrice } from "../../utils";
 class ProductDetails extends Component {
   render() {
     const { product } = this.props.data;
-    console.log("Product Details", product, product.description);
+    console.log("Product Details", this.props);
     return (
       <Layout>
         <Container>
@@ -44,12 +43,13 @@ const mapStateToProps = (state) => ({
   currency: state.currentCurrency,
 });
 
-export default withNavigation(
-  withProductDetails(connect(mapStateToProps)(ProductDetails), (props) => {
+export default withProductDetails(
+  connect(mapStateToProps)(ProductDetails),
+  (props) => {
     return {
       variables: {
-        id: props.params.id,
+        id: props.match.params.id,
       },
     };
-  })
+  }
 );

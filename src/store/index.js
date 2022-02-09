@@ -3,10 +3,10 @@ import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
 
 const initialState = {
-  selectedCategory: "",
+  selectedCategory: "all",
   currentCurrency: "$",
   showCurrencies: false,
-  showMiniCart: true,
+  showMiniCart: false,
   cartProducts: [],
 };
 

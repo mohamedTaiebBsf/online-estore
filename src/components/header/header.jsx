@@ -22,7 +22,7 @@ class Header extends Component {
       <Container>
         <Wrapper>
           <Categories category={this.props.categ} />
-          <Link to="/">
+          <Link to="/" onClick={() => this.props.setCurrentCategory("all")}>
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
           <Wrapper>
@@ -68,6 +68,8 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCurr: () => dispatch({ type: "TOGGLE_CURRENCY" }),
   switch: (symbol) => dispatch({ type: "SWITCH_CURRENCY", payload: symbol }),
   toggleMiniCart: () => dispatch({ type: "TOGGLE_MINI_CART" }),
+  setCurrentCategory: (category) =>
+    dispatch({ type: "SET_SELECTED_CATEGORY", payload: category }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

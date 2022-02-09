@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Anchor = styled(NavLink)`
+const Anchor = styled(Link)`
   text-decoration: none;
   color: var(--black);
   display: inline-block;
