@@ -10,9 +10,10 @@ import {
   CartIcon,
   CartBadge,
   CurrencySymbol,
-  Arrows,
+  Arrow,
 } from "./styles";
 import Currencies from "../currencies/currencies";
+import MiniCart from "../cart/mini-cart/miniCart";
 
 class Header extends Component {
   render() {
@@ -25,23 +26,29 @@ class Header extends Component {
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
           <Wrapper>
-            <CurrencySymbol onClick={this.props.toggle}>
+            <CurrencySymbol onClick={this.props.toggleCurr}>
               {this.props.curr}
-              <Arrows
+              <Arrow
                 src="/assets/images/arrow.svg"
                 alt="arrow"
                 $show={this.props.showCurr}
               />
             </CurrencySymbol>
-            <CartContainer>
+            <CartContainer onClick={this.props.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
-              <CartBadge>2</CartBadge>
+              {this.props.cartItems.lenght > 0 && (
+                <CartBadge>{this.props.cartItems.lenght}</CartBadge>
+              )}
             </CartContainer>
           </Wrapper>
           <Currencies
             currency={this.props.curr}
             show={this.props.showCurr}
             switch={this.props.switch}
+          />
+          <MiniCart
+            show={this.props.showMiniCart}
+            items={this.props.cartItems}
           />
         </Wrapper>
       </Container>
@@ -52,12 +59,15 @@ class Header extends Component {
 const mapStateToProps = (state) => ({
   curr: state.currentCurrency,
   showCurr: state.showCurrencies,
+  showMiniCart: state.showMiniCart,
   categ: state.selectedCategory,
+  cartItems: state.cartProducts,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggle: () => dispatch({ type: "TOGGLE_CURRENCY" }),
+  toggleCurr: () => dispatch({ type: "TOGGLE_CURRENCY" }),
   switch: (symbol) => dispatch({ type: "SWITCH_CURRENCY", payload: symbol }),
+  toggleMiniCart: () => dispatch({ type: "TOGGLE_MINI_CART" }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

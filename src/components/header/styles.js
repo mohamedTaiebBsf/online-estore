@@ -18,6 +18,7 @@ const CartContainer = styled.div`
   position: relative;
   cursor: pointer;
   margin-left: 1.25rem;
+  z-index: 7;
 `;
 
 const CartIcon = styled.img`
@@ -45,10 +46,10 @@ const CurrencySymbol = styled.span`
   font-weight: 500;
   font-size: 1.125rem;
   cursor: pointer;
-  z-index: 2;
+  z-index: 7;
 `;
 
-const Arrows = styled.img`
+const Arrow = styled.img`
   width: 0.625rem;
   margin-left: 0.5rem;
   transform: ${(props) => (props.$show ? "rotate(180deg)" : "none")};
@@ -62,5 +63,5 @@ export {
   CartIcon,
   CartBadge,
   CurrencySymbol,
-  Arrows,
+  Arrow,
 };

@@ -5,9 +5,9 @@ import NotFound from "../pages/not-found/not-found";
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/cart", component: Cart },
   { path: "/:category", component: Home },
   { path: "/product/:id", component: Product },
-  { path: "/cart", component: Cart },
   { path: "*", component: NotFound },
 ];
 

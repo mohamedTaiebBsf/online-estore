@@ -6,9 +6,10 @@ import Products from "../../components/products/products";
 
 class Home extends Component {
   render() {
+    console.log("Home", this.props);
     return (
       <Layout>
-        <Title>{this.props.categ}</Title>
+        <Title>{this.props.params.category || "All"}</Title>
         <Products />
       </Layout>
     );

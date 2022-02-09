@@ -6,6 +6,8 @@ const initialState = {
   selectedCategory: "",
   currentCurrency: "$",
   showCurrencies: false,
+  showMiniCart: true,
+  cartProducts: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +22,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showCurrencies: !state.showCurrencies,
+      };
+    case "TOGGLE_MINI_CART":
+      return {
+        ...state,
+        showMiniCart: !state.showMiniCart,
+      };
+    case "CLOSE_MINI_CART":
+      return {
+        ...state,
+        showMiniCart: false,
       };
     case "SET_SELECTED_CATEGORY":
       return {
@@ -43,7 +55,5 @@ const StoreProvider = class extends Component {
     return <Provider store={store}>{this.props.children}</Provider>;
   }
 };
-
-const actions = {};
 
 export { StoreProvider, connect };
