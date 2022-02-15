@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "../../../store";
+import CartProducts from "../cart-products/cartProducts";
 import {
   Container,
   Title,
@@ -23,6 +25,7 @@ class MiniCart extends Component {
         <Title>
           My Bag, <TotalItems>{this.displayTotalItems()}</TotalItems>
         </Title>
+        <CartProducts products={this.props.cartItems} />
         <TotalPrice>
           <Label>Total</Label>
           <Price>$100</Price>
@@ -35,4 +38,9 @@ class MiniCart extends Component {
   }
 }
 
-export default MiniCart;
+const mapStateToProps = (state) => ({
+  cartItems: state.cartProducts,
+});
+
+// export default MiniCart;
+export default connect(mapStateToProps)(MiniCart);

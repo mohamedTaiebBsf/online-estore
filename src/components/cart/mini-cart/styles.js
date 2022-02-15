@@ -23,6 +23,7 @@ const Container = styled.div`
 
 const Title = styled.h5`
   font-weight: 700;
+  margin-bottom: 1.5625rem;
 `;
 
 const TotalItems = styled.span`
@@ -33,6 +34,8 @@ const TotalPrice = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1.875rem;
 `;
 
 const Label = styled.p`

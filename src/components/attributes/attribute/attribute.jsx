@@ -7,9 +7,13 @@ class Attribute extends Component {
   render() {
     const { name, items, id } = this.props.attribute;
     const isColor = name.toLowerCase() === "color";
+    console.log("isCart:", this.props.isCart);
 
     return (
-      <Container>
+      <Container
+        className={this.props.isCart && "options-in-cart"}
+        $isColor={isColor}
+      >
         <Title>{name}: </Title>
         <Items
           items={items}
@@ -17,6 +21,7 @@ class Attribute extends Component {
           select={this.props.select}
           selectedOptions={this.props.selectedOptions || []}
           attributeId={id}
+          isCart={this.props.isCart}
         />
       </Container>
     );

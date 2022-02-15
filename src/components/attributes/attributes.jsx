@@ -5,7 +5,7 @@ import { Container } from "./styles";
 class Attributes extends Component {
   render() {
     return (
-      <Container>
+      <Container $isCart={this.props.isCart}>
         {this.props.attributes.length > 0 &&
           this.props.attributes.map((attribute) => (
             <Attribute
@@ -14,6 +14,7 @@ class Attributes extends Component {
               select={this.props.select}
               productId={this.props.productId}
               selectedOptions={this.props.selectedOptions}
+              isCart={this.props.isCart}
             />
           ))}
       </Container>
