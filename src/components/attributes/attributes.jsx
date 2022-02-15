@@ -8,7 +8,13 @@ class Attributes extends Component {
       <Container>
         {this.props.attributes.length > 0 &&
           this.props.attributes.map((attribute) => (
-            <Attribute key={attribute.id} attribute={attribute} />
+            <Attribute
+              key={attribute.id}
+              attribute={attribute}
+              select={this.props.select}
+              productId={this.props.productId}
+              selectedOptions={this.props.selectedOptions}
+            />
           ))}
       </Container>
     );

@@ -1,28 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Container = styled.div`
-  margin-bottom: 2rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const Title = styled.h4`
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-`;
-
-const Items = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-`;
-
-const Item = styled.div`
   padding: 0.875rem 1.5rem;
   border: 1px solid var(--black);
   font-weight: 400;
@@ -55,11 +33,4 @@ const Item = styled.div`
   }
 `;
 
-const Error = styled.small`
-  color: red;
-  font-size: 0.6875rem;
-  font-style: italic;
-  font-weight: 500;
-`;
-
-export { Container, Title, Items, Item, Error };
+export { Container };

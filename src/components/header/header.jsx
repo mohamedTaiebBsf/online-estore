@@ -17,7 +17,6 @@ import MiniCart from "../cart/mini-cart/miniCart";
 
 class Header extends Component {
   render() {
-    console.log("Header:", this.props.curr, this.props);
     return (
       <Container>
         <Wrapper>
@@ -36,8 +35,8 @@ class Header extends Component {
             </CurrencySymbol>
             <CartContainer onClick={this.props.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
-              {this.props.cartItems.lenght > 0 && (
-                <CartBadge>{this.props.cartItems.lenght}</CartBadge>
+              {this.props.cartItems.length > 0 && (
+                <CartBadge>{this.props.cartItems.length}</CartBadge>
               )}
             </CartContainer>
           </Wrapper>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
+import { copy } from "../utils";
 
 const initialState = {
   selectedCategory: "all",
@@ -8,6 +9,7 @@ const initialState = {
   showCurrencies: false,
   showMiniCart: false,
   cartProducts: [],
+  selectedOptions: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +39,38 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedCategory: action.payload,
+      };
+    case "ADD_TO_CART":
+      return {
+        ...state,
+        cartProducts: [...state.cartProducts, action.payload],
+      };
+    case "UPDATE_QUANTITY":
+      const cart = copy(state.cartProducts);
+      const item = cart.find((elt) => elt.id === action.payload);
+      cart[cart.indexOf(item)].quantity++;
+      return {
+        ...state,
+        cartProducts: cart,
+      };
+
+    case "ADD_SELECTED_OPTION":
+      return {
+        ...state,
+        selectedOptions: [...copy(state.selectedOptions), action.payload],
+      };
+    case "UPDATE_SELECTED_OPTION":
+      const options = copy(state.selectedOptions);
+      const option = options.find((elt) => elt.id === action.payload.id);
+      options[options.indexOf(option)].selectItem = action.payload.selectItem;
+      return {
+        ...state,
+        selectedOptions: options,
+      };
+    case "CLEAR_SELECTED_OPTIONS":
+      return {
+        ...state,
+        selectedOptions: [],
       };
     default:
       return state;

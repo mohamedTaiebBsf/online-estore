@@ -6,7 +6,6 @@ import { connect } from "../../store";
 
 class Home extends Component {
   render() {
-    console.log("Home", this.props);
     return (
       <Layout>
         <Title>{this.props.categ}</Title>

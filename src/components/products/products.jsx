@@ -18,13 +18,9 @@ class Products extends Component {
     else return false;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log("CDU:", prevProps.data.category.products);
-  }
-
   render() {
     const { products } = this.props.data.category;
-    console.log("Products", this.props, products);
+    console.log("Products", products);
 
     return (
       <Container>
@@ -33,6 +29,8 @@ class Products extends Component {
             key={product.id}
             product={product}
             currentCurrency={this.props.curr}
+            add={this.props.add}
+            update={this.props.updateQty}
           />
         ))}
       </Container>
@@ -45,7 +43,16 @@ const mapStateToProps = (state) => ({
   categ: state.selectedCategory,
 });
 
-export default connect(mapStateToProps)(
+const mapDispatchToProps = (dispatch) => ({
+  add: (product) => dispatch({ type: "ADD_TO_CART", payload: product }),
+  updateQty: (productId) =>
+    dispatch({ type: "UPDATE_QUANTITY", payload: productId }),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
   withProducts(Products, (props) => {
     return {
       variables: {
