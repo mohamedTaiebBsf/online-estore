@@ -12,6 +12,25 @@ const Container = styled.div`
   opacity: 0;
   transition: all 0.4s ease-in-out;
   pointer-events: none;
+  max-height: 31.25rem;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--gray);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(141, 143, 154, 0.7);
+  }
 
   &.open {
     top: 100%;
@@ -50,6 +69,7 @@ const Price = styled.p`
 const Actions = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Anchor = styled(Link)`
@@ -65,6 +85,20 @@ const Anchor = styled(Link)`
   &:hover {
     color: var(--white);
     background: var(--black);
+  }
+
+  &:first-child {
+    margin-right: 1rem;
+  }
+
+  &:last-child {
+    color: var(--white);
+    background: var(--green);
+    border: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 

@@ -46,7 +46,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   add: (product) => dispatch({ type: "ADD_TO_CART", payload: product }),
   updateQty: (productId) =>
-    dispatch({ type: "UPDATE_QUANTITY", payload: productId }),
+    dispatch({ type: "INCREASE_QUANTITY", payload: productId }),
 });
 
 export default connect(

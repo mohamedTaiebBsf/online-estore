@@ -32,6 +32,7 @@ class MiniCart extends Component {
         </TotalPrice>
         <Actions>
           <Anchor to="/cart">View Bag</Anchor>
+          <Anchor to="/checkout">Check Out</Anchor>
         </Actions>
       </Container>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Title } from "./styles";
-// import { Container, Title, Items, Item } from "./styles";
 import Items from "./items/items";
 
 class Attribute extends Component {

@@ -5,9 +5,6 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5625rem;
-  /* border: 1px solid var(--black);
-  padding: 1rem;
-  border-radius: 0.625rem; */
 
   &:last-child {
     margin-bottom: 0;
@@ -70,6 +67,12 @@ const Button = styled.button`
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--black);
+    color: var(--white);
+  }
 `;
 
 const Image = styled.img`

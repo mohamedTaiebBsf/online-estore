@@ -137,7 +137,6 @@ class Product extends Component {
             select={this.selectOption}
             attributes={attributes}
             selectedOptions={this.props.selectedOptions}
-            productId={id}
           />
           <ModalActions>
             <ModalButton onClick={this.closeModal}>Decline</ModalButton>

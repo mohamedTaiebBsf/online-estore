@@ -12,6 +12,27 @@ const initialState = {
   selectedOptions: [],
 };
 
+const increaseQty = (state, productId) => {
+  const cart = copy(state.cartProducts);
+  const item = cart.find((elt) => elt.id === productId);
+  cart[cart.indexOf(item)].quantity++;
+  return {
+    ...state,
+    cartProducts: cart,
+  };
+};
+
+const decreaseQty = (state, productId) => {
+  const cart = copy(state.cartProducts);
+  const item = cart.find((elt) => elt.id === productId);
+  if (cart[cart.indexOf(item)].quantity === 1) return state;
+  cart[cart.indexOf(item)].quantity--;
+  return {
+    ...state,
+    cartProducts: cart,
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SWITCH_CURRENCY":
@@ -45,14 +66,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         cartProducts: [...state.cartProducts, action.payload],
       };
-    case "UPDATE_QUANTITY":
-      const cart = copy(state.cartProducts);
-      const item = cart.find((elt) => elt.id === action.payload);
-      cart[cart.indexOf(item)].quantity++;
-      return {
-        ...state,
-        cartProducts: cart,
-      };
+    case "INCREASE_QUANTITY":
+      return increaseQty(state, action.payload);
+    case "DECREASE_QUANTITY":
+      return decreaseQty(state, action.payload);
 
     case "ADD_SELECTED_OPTION":
       return {

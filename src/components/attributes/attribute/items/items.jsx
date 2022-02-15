@@ -22,7 +22,7 @@ class Items extends Component {
             key={item.id}
             isColor={this.props.isColor && item.value}
             selected={this.isActive(item.id)}
-            select={() => this.selectOption(item)}
+            select={!this.props.isCart ? () => this.selectOption(item) : null}
           >
             {!this.props.isColor && item.value}
           </Item>

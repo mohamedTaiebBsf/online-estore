@@ -12,7 +12,6 @@ class Attributes extends Component {
               key={attribute.id}
               attribute={attribute}
               select={this.props.select}
-              productId={this.props.productId}
               selectedOptions={this.props.selectedOptions}
               isCart={this.props.isCart}
             />
