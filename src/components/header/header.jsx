@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Categories from "../categories/categories";
 import { connect } from "../../store";
+import { isEmpty } from "../../utils";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -16,6 +17,17 @@ import Currencies from "../currencies/currencies";
 import MiniCart from "../cart/mini-cart/miniCart";
 
 class Header extends Component {
+  displayBadgeTotal = () => {
+    const { cartItems } = this.props;
+    let total = 0;
+
+    cartItems.forEach((item) => {
+      total += item.quantity;
+    });
+
+    return total;
+  };
+
   render() {
     return (
       <Container>
@@ -35,8 +47,8 @@ class Header extends Component {
             </CurrencySymbol>
             <CartContainer onClick={this.props.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
-              {this.props.cartItems.length > 0 && (
-                <CartBadge>{this.props.cartItems.length}</CartBadge>
+              {!isEmpty(this.props.cartItems) && (
+                <CartBadge>{this.displayBadgeTotal()}</CartBadge>
               )}
             </CartContainer>
           </Wrapper>
