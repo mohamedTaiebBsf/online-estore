@@ -10,6 +10,8 @@ import {
   Anchor,
   Image,
   Remark,
+  Button,
+  TrashIcon,
 } from "./styles";
 import { connect } from "../../store";
 import { isEmpty, format } from "../../utils";
@@ -58,9 +60,19 @@ class Cart extends Component {
   };
 
   render() {
+    const { cartItems } = this.props;
+
     return (
       <Layout>
-        <Title>Cart</Title>
+        <Wrapper className="title-wrapper">
+          <Title>Cart</Title>
+          {!isEmpty(cartItems) && (
+            <Button onClick={this.props.clearCart}>
+              Clear
+              <TrashIcon src="/assets/images/trash-icon.svg" alt="trash" />
+            </Button>
+          )}
+        </Wrapper>
         {this.renderCart()}
       </Layout>
     );
@@ -72,4 +84,8 @@ const mapStateToProps = (state) => ({
   curr: state.currentCurrency,
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) => ({
+  clearCart: () => dispatch({ type: "CLEAR_CART" }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

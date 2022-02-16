@@ -66,6 +66,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         cartProducts: [...state.cartProducts, action.payload],
       };
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cartProducts: [],
+      };
     case "INCREASE_QUANTITY":
       return increaseQty(state, action.payload);
     case "DECREASE_QUANTITY":
