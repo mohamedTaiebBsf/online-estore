@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "../../../store";
 import CartProducts from "../cart-products/cartProducts";
+import { connect } from "../../../store";
+import { isEmpty, pluralize, format } from "../../../utils";
 import {
   Container,
   Title,
@@ -14,25 +15,55 @@ import {
 
 class MiniCart extends Component {
   displayTotalItems = () => {
-    let len = this.props.items.length;
+    const { cartItems } = this.props;
 
-    return `${len} product${len > 1 || len === 0 ? "s" : ""}`;
+    return `${cartItems.length} ${pluralize(cartItems.length, "product")}`;
+  };
+
+  displayTotalPrice = () => {
+    const { cartItems, curr } = this.props;
+    let total = 0;
+
+    cartItems.forEach((item) => {
+      const price = item.prices.find((price) => curr === price.currency.symbol);
+      if (price) total += price.amount * item.quantity;
+    });
+
+    return format(total);
+  };
+
+  renderProducts = () => {
+    const { cartItems } = this.props;
+
+    if (!isEmpty(cartItems)) {
+      return (
+        <React.Fragment>
+          <CartProducts products={cartItems} />
+          <TotalPrice>
+            <Label>Total</Label>
+            <Price>{this.displayTotalPrice()}</Price>
+          </TotalPrice>
+        </React.Fragment>
+      );
+    }
+
+    return <Title className="empty-cart">Your Cart is empty!</Title>;
   };
 
   render() {
+    const { show, cartItems } = this.props;
+
     return (
-      <Container className={this.props.show && "open"}>
+      <Container className={show && "open"}>
         <Title>
           My Bag, <TotalItems>{this.displayTotalItems()}</TotalItems>
         </Title>
-        <CartProducts products={this.props.cartItems} />
-        <TotalPrice>
-          <Label>Total</Label>
-          <Price>$100</Price>
-        </TotalPrice>
+        {this.renderProducts()}
         <Actions>
           <Anchor to="/cart">View Bag</Anchor>
-          <Anchor to="/checkout">Check Out</Anchor>
+          <Anchor to="/checkout" disabled={isEmpty(cartItems)}>
+            Check Out
+          </Anchor>
         </Actions>
       </Container>
     );
@@ -40,8 +71,7 @@ class MiniCart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cartItems: state.cartProducts,
+  curr: state.currentCurrency,
 });
 
-// export default MiniCart;
 export default connect(mapStateToProps)(MiniCart);

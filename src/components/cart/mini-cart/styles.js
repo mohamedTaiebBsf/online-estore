@@ -43,6 +43,12 @@ const Container = styled.div`
 const Title = styled.h5`
   font-weight: 700;
   margin-bottom: 1.5625rem;
+
+  &.empty-cart {
+    margin-bottom: 1.875rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
 `;
 
 const TotalItems = styled.span`
@@ -95,9 +101,22 @@ const Anchor = styled(Link)`
     color: var(--white);
     background: var(--green);
     border: none;
+    position: relative;
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &:disabled,
+    &[disabled] {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+      cursor: not-allowed;
+
+      &:active {
+        pointer-events: none;
+      }
     }
   }
 `;

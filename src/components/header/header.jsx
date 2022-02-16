@@ -47,7 +47,7 @@ class Header extends Component {
           />
           <MiniCart
             show={this.props.showMiniCart}
-            items={this.props.cartItems}
+            cartItems={this.props.cartItems}
           />
         </Wrapper>
       </Container>

@@ -67,8 +67,11 @@ const findById = (arr, id) => {
   return arr.find((elt) => elt.id === id);
 };
 
+const pluralize = (number, word, plural = word + "s") =>
+  number === -1 || number === 1 ? word : plural;
+
 // function formatNumber(num) {
 //   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 // }
 
-export { displayPrice, omit, copy, format, isEmpty, findById };
+export { displayPrice, omit, copy, format, isEmpty, findById, pluralize };
