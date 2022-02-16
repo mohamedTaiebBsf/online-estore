@@ -5,7 +5,9 @@ import Item from "./item/item";
 class Items extends Component {
   selectOption = (option) => {
     console.log(option, this.props.attributeId);
-    this.props.select(this.props.attributeId, option.id);
+    if (this.props.select) {
+      this.props.select(this.props.attributeId, option.id);
+    }
   };
 
   isActive = (itemId) => {
