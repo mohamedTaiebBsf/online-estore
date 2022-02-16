@@ -33,6 +33,21 @@ const decreaseQty = (state, productId) => {
   };
 };
 
+const removeProduct = (state, productId) => {
+  let cart = copy(state.cartProducts);
+  const item = cart.find((elt) => elt.id === productId);
+  if (item) {
+    cart = cart.filter((product) => product.id !== productId);
+
+    return {
+      ...state,
+      cartProducts: cart,
+    };
+  }
+
+  return state;
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SWITCH_CURRENCY":
@@ -71,6 +86,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         cartProducts: [],
       };
+    case "REMOVE_PRODUCT_FROM_CART":
+      return removeProduct(state, action.payload);
     case "INCREASE_QUANTITY":
       return increaseQty(state, action.payload);
     case "DECREASE_QUANTITY":

@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+const TrashIcon = styled.img`
+  position: absolute;
+  right: 0;
+  width: 1.25rem;
+  filter: invert(30%) sepia(57%) saturate(6200%) hue-rotate(340deg)
+    brightness(94%) contrast(83%);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -8,6 +20,16 @@ const Container = styled.div`
   border-bottom: ${(props) =>
     props.$isCart ? "1px solid var(--gray)" : "none"};
   padding-bottom: ${(props) => (props.$isCart ? "1.5625rem" : "0rem")};
+  position: relative;
+
+  & ${TrashIcon} {
+    top: ${(props) => (props.$isCart ? "1.25rem" : "0rem")};
+  }
+
+  &:hover ${TrashIcon} {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &:first-child {
     border-top: ${(props) =>
@@ -103,4 +125,5 @@ export {
   Actions,
   Quantity,
   Button,
+  TrashIcon,
 };

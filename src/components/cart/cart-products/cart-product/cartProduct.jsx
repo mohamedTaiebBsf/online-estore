@@ -13,6 +13,7 @@ import {
   Actions,
   Quantity,
   Button,
+  TrashIcon,
 } from "./styles";
 
 class CartProduct extends Component {
@@ -30,6 +31,11 @@ class CartProduct extends Component {
 
     return (
       <Container $isCart={this.props.isCart}>
+        <TrashIcon
+          onClick={() => this.props.removeProduct(id)}
+          src="/assets/images/trash-icon.svg"
+          alt="trash"
+        />
         <Column>
           <Brand>{brand}</Brand>
           <Name>{name}</Name>
@@ -64,6 +70,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "INCREASE_QUANTITY", payload: productId }),
   decreaseQty: (productId) =>
     dispatch({ type: "DECREASE_QUANTITY", payload: productId }),
+  removeProduct: (productId) =>
+    dispatch({ type: "REMOVE_PRODUCT_FROM_CART", payload: productId }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartProduct);
