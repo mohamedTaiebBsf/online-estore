@@ -29,7 +29,7 @@ class CartProduct extends Component {
     } = this.props.product;
 
     return (
-      <Container>
+      <Container $isCart={this.props.isCart}>
         <Column>
           <Brand>{brand}</Brand>
           <Name>{name}</Name>

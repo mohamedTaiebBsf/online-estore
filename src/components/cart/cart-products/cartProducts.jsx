@@ -7,7 +7,11 @@ class CartProducts extends Component {
     return (
       <Container>
         {this.props.products.map((product) => (
-          <CartProduct key={product.id} product={product} />
+          <CartProduct
+            key={product.id}
+            product={product}
+            isCart={this.props.isCart}
+          />
         ))}
       </Container>
     );

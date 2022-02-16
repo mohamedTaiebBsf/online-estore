@@ -5,9 +5,21 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5625rem;
+  border-bottom: ${(props) =>
+    props.$isCart ? "1px solid var(--gray)" : "none"};
+  padding-bottom: ${(props) => (props.$isCart ? "1.5625rem" : "0rem")};
+
+  &:first-child {
+    border-top: ${(props) =>
+      props.$isCart ? "1px solid var(--gray)" : "none"};
+
+    padding-top: ${(props) => (props.$isCart ? "1.5625rem" : "0rem")};
+  }
 
   &:last-child {
     margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: none;
   }
 `;
 
