@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "../../../store";
-
+import Modal from "../../UI/modal/modal";
+import Attributes from "../../attributes/attributes";
+import { storeConsumer } from "../../../store";
+import { copy, displayPrice, omit, isEmpty } from "../../../utils";
 import {
   Container,
   Wrapper,
@@ -16,9 +18,6 @@ import {
   ModalActions,
   ModalButton,
 } from "./styles";
-import { copy, displayPrice, omit, isEmpty } from "../../../utils";
-import Modal from "../../UI/modal/modal";
-import Attributes from "../../attributes/attributes";
 
 class Product extends Component {
   state = {
@@ -26,7 +25,7 @@ class Product extends Component {
   };
 
   closeModal = () => {
-    this.props.resetOptions();
+    this.props.clearOptions();
     this.setState({ openModal: false });
   };
 
@@ -41,11 +40,11 @@ class Product extends Component {
       selectItem: itemId,
     };
 
-    if (isEmpty(this.props.selectedOptions)) {
+    if (isEmpty(this.props.options)) {
       return this.props.addOption(option);
     }
 
-    const attr = this.props.selectedOptions.find((elt) => elt.id === attrId);
+    const attr = this.props.options.find((elt) => elt.id === attrId);
 
     if (attr) {
       return this.props.updateOption(option);
@@ -88,11 +87,11 @@ class Product extends Component {
       return this.openModal();
     }
 
-    if (isEmpty(this.props.selectedOptions)) {
+    if (isEmpty(this.props.options)) {
       return;
     }
 
-    itemToAdd.selectedOptions = this.props.selectedOptions;
+    itemToAdd.selectedOptions = this.props.options;
     this.props.add(itemToAdd);
     this.closeModal();
   };
@@ -136,13 +135,13 @@ class Product extends Component {
           <Attributes
             select={this.selectOption}
             attributes={attributes}
-            selectedOptions={this.props.selectedOptions}
+            selectedOptions={this.props.options}
           />
           <ModalActions>
             <ModalButton onClick={this.closeModal}>Decline</ModalButton>
             <ModalButton
               onClick={() => this.addToCart(this.props.product)}
-              disabled={attributes.length !== this.props.selectedOptions.length}
+              disabled={attributes.length !== this.props.options.length}
             >
               Accept
             </ModalButton>
@@ -153,17 +152,4 @@ class Product extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedOptions: state.selectedOptions,
-  cartItems: state.cartProducts,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addOption: (option) =>
-    dispatch({ type: "ADD_SELECTED_OPTION", payload: option }),
-  updateOption: (option) =>
-    dispatch({ type: "UPDATE_SELECTED_OPTION", payload: option }),
-  resetOptions: (option) => dispatch({ type: "CLEAR_SELECTED_OPTIONS" }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default storeConsumer(Product);

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Layout from "../layout/layout";
-import { Title } from "./styles";
 import Products from "../../components/products/products";
-import { connect } from "../../store";
+import { storeConsumer } from "../../store";
+import { Title } from "./styles";
 
 class Home extends Component {
   render() {
@@ -15,8 +15,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  categ: state.selectedCategory,
-});
-
-export default connect(mapStateToProps)(Home);
+export default storeConsumer(Home);

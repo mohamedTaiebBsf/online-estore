@@ -42,17 +42,17 @@ const handleQuery = (WrappedComponent, schema, options = null) =>
     }
   );
 
-const withCategories = (WrappedCompoent) =>
-  handleQuery(WrappedCompoent, GET_CATEGORIES);
+const withCategories = (WrappedComponent) =>
+  handleQuery(WrappedComponent, GET_CATEGORIES);
 
-const withProducts = (WrappedCompoent, options) =>
-  handleQuery(WrappedCompoent, GET_CATEGORY_PRODUCTS, options);
+const withProducts = (WrappedComponent, options) =>
+  handleQuery(WrappedComponent, GET_CATEGORY_PRODUCTS, options);
 
-const withCurrencies = (WrappedCompoent) =>
-  handleQuery(WrappedCompoent, GET_CURRENCIES);
+const withCurrencies = (WrappedComponent) =>
+  handleQuery(WrappedComponent, GET_CURRENCIES);
 
-const withProductDetails = (WrappedCompoent, options) =>
-  handleQuery(WrappedCompoent, GET_PRODUCT_DETAILS, options);
+const withProductDetails = (WrappedComponent, options) =>
+  handleQuery(WrappedComponent, GET_PRODUCT_DETAILS, options);
 
 export {
   HttpProvider,

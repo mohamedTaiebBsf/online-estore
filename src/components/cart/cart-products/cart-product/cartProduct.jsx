@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Attributes from "../../../attributes/attributes";
-import { connect } from "../../../../store";
+import { storeConsumer } from "../../../../store";
 import { displayPrice } from "../../../../utils";
 import {
   Container,
@@ -32,14 +32,14 @@ class CartProduct extends Component {
     return (
       <Container $isCart={this.props.isCart}>
         <TrashIcon
-          onClick={() => this.props.removeProduct(id)}
+          onClick={() => this.props.removeFromCart(id)}
           src="/assets/images/trash-icon.svg"
           alt="trash"
         />
         <Column>
           <Brand>{brand}</Brand>
           <Name>{name}</Name>
-          <Price>{displayPrice(prices, this.props.curr)}</Price>
+          <Price>{displayPrice(prices, this.props.currency)}</Price>
           <Attributes
             attributes={attributes}
             selectedOptions={selectedOptions}
@@ -61,17 +61,4 @@ class CartProduct extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  curr: state.currentCurrency,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  increaseQty: (productId) =>
-    dispatch({ type: "INCREASE_QUANTITY", payload: productId }),
-  decreaseQty: (productId) =>
-    dispatch({ type: "DECREASE_QUANTITY", payload: productId }),
-  removeProduct: (productId) =>
-    dispatch({ type: "REMOVE_PRODUCT_FROM_CART", payload: productId }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartProduct);
+export default storeConsumer(CartProduct);

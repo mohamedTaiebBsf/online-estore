@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Container from "./styles";
 import Item from "./item/item";
+import Container from "./styles";
 
 class Items extends Component {
   selectOption = (option) => {

@@ -11,7 +11,6 @@ import {
 
 class NotFound extends Component {
   render() {
-    console.log(this.props);
     return (
       <Container>
         <Wrapper>

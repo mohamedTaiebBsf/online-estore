@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Product from "./product/product";
 import { withProducts } from "../../services/http-service";
-import { connect } from "../../store";
+import { storeConsumer } from "../../store";
 import { Container } from "./styles";
 
 class Products extends Component {
@@ -28,9 +28,9 @@ class Products extends Component {
           <Product
             key={product.id}
             product={product}
-            currentCurrency={this.props.curr}
-            add={this.props.add}
-            update={this.props.updateQty}
+            currentCurrency={this.props.currency}
+            add={this.props.addToCart}
+            update={this.props.increaseQty}
           />
         ))}
       </Container>
@@ -38,21 +38,7 @@ class Products extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  curr: state.currentCurrency,
-  categ: state.selectedCategory,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  add: (product) => dispatch({ type: "ADD_TO_CART", payload: product }),
-  updateQty: (productId) =>
-    dispatch({ type: "INCREASE_QUANTITY", payload: productId }),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
+export default storeConsumer(
   withProducts(Products, (props) => {
     return {
       variables: {

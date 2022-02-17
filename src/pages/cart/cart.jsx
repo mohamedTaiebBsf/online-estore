@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Layout from "../layout/layout";
 import CartProducts from "../../components/cart/cart-products/cartProducts";
+import { storeConsumer } from "../../store";
+import { isEmpty, format } from "../../utils";
 import {
   Title,
   Wrapper,
@@ -13,16 +15,16 @@ import {
   Button,
   TrashIcon,
 } from "./styles";
-import { connect } from "../../store";
-import { isEmpty, format } from "../../utils";
 
 class Cart extends Component {
   displayTotalPrice = () => {
-    const { cartItems, curr } = this.props;
+    const { cartItems, currency } = this.props;
     let total = 0;
 
     cartItems.forEach((item) => {
-      const price = item.prices.find((price) => curr === price.currency.symbol);
+      const price = item.prices.find(
+        (price) => currency === price.currency.symbol
+      );
       if (price) total += price.amount * item.quantity;
     });
 
@@ -79,13 +81,4 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  cartItems: state.cartProducts,
-  curr: state.currentCurrency,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  clearCart: () => dispatch({ type: "CLEAR_CART" }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default storeConsumer(Cart);

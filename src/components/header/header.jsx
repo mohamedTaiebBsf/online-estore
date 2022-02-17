@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Categories from "../categories/categories";
-import { connect } from "../../store";
-import { isEmpty } from "../../utils";
+import Currencies from "../currencies/currencies";
+import MiniCart from "../cart/mini-cart/miniCart";
 import { Link } from "react-router-dom";
+import { storeConsumer } from "../../store";
+import { isEmpty } from "../../utils";
 import {
   Container,
   Wrapper,
@@ -13,8 +15,6 @@ import {
   CurrencySymbol,
   Arrow,
 } from "./styles";
-import Currencies from "../currencies/currencies";
-import MiniCart from "../cart/mini-cart/miniCart";
 
 class Header extends Component {
   displayBadgeTotal = () => {
@@ -33,16 +33,16 @@ class Header extends Component {
       <Container>
         <Wrapper>
           <Categories category={this.props.categ} />
-          <Link to="/" onClick={() => this.props.setCurrentCategory("all")}>
+          <Link to="/" onClick={() => this.props.setCateg("all")}>
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
           <Wrapper>
             <CurrencySymbol onClick={this.props.toggleCurr}>
-              {this.props.curr}
+              {this.props.currency}
               <Arrow
                 src="/assets/images/arrow.svg"
                 alt="arrow"
-                $show={this.props.showCurr}
+                $show={this.props.showCurrency}
               />
             </CurrencySymbol>
             <CartContainer onClick={this.props.toggleMiniCart}>
@@ -53,9 +53,9 @@ class Header extends Component {
             </CartContainer>
           </Wrapper>
           <Currencies
-            currency={this.props.curr}
-            show={this.props.showCurr}
-            switch={this.props.switch}
+            currency={this.props.currency}
+            show={this.props.showCurrency}
+            switch={this.props.switchCurr}
           />
           <MiniCart
             show={this.props.showMiniCart}
@@ -67,20 +67,4 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  curr: state.currentCurrency,
-  showCurr: state.showCurrencies,
-  showMiniCart: state.showMiniCart,
-  categ: state.selectedCategory,
-  cartItems: state.cartProducts,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleCurr: () => dispatch({ type: "TOGGLE_CURRENCY" }),
-  switch: (symbol) => dispatch({ type: "SWITCH_CURRENCY", payload: symbol }),
-  toggleMiniCart: () => dispatch({ type: "TOGGLE_MINI_CART" }),
-  setCurrentCategory: (category) =>
-    dispatch({ type: "SET_SELECTED_CATEGORY", payload: category }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default storeConsumer(Header);

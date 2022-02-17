@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CartProducts from "../cart-products/cartProducts";
-import { connect } from "../../../store";
+import { storeConsumer } from "../../../store";
 import { isEmpty, pluralize, format } from "../../../utils";
 import {
   Container,
@@ -21,11 +21,13 @@ class MiniCart extends Component {
   };
 
   displayTotalPrice = () => {
-    const { cartItems, curr } = this.props;
+    const { cartItems, currency } = this.props;
     let total = 0;
 
     cartItems.forEach((item) => {
-      const price = item.prices.find((price) => curr === price.currency.symbol);
+      const price = item.prices.find(
+        (price) => currency === price.currency.symbol
+      );
       if (price) total += price.amount * item.quantity;
     });
 
@@ -70,8 +72,4 @@ class MiniCart extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  curr: state.currentCurrency,
-});
-
-export default connect(mapStateToProps)(MiniCart);
+export default storeConsumer(MiniCart);

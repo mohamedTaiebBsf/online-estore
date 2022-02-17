@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Header from "../../components/header/header";
 import Backdrop from "../../components/UI/backdrop/backdrop";
+import { storeConsumer } from "../../store";
 import Container from "./styles";
-import { connect } from "../../store";
 
 class Layout extends Component {
   render() {
@@ -21,12 +21,4 @@ class Layout extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  showMiniCart: state.showMiniCart,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  closeMiniCart: () => dispatch({ type: "CLOSE_MINI_CART" }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default storeConsumer(Layout);

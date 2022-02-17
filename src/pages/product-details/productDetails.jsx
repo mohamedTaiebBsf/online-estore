@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Layout from "../layout/layout";
 import Attributes from "../../components/attributes/attributes";
 import ProductImages from "../../components/product-images/productImages";
+import { withProductDetails } from "../../services/http-service";
+import { storeConsumer } from "../../store";
+import { displayPrice } from "../../utils";
 import {
   Container,
   Descriptions,
@@ -12,9 +15,6 @@ import {
   Button,
   Text,
 } from "./styles";
-import { withProductDetails } from "../../services/http-service";
-import { connect } from "../../store";
-import { displayPrice } from "../../utils";
 
 class ProductDetails extends Component {
   render() {
@@ -39,17 +39,10 @@ class ProductDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  currency: state.currentCurrency,
+export default withProductDetails(storeConsumer(ProductDetails), (props) => {
+  return {
+    variables: {
+      id: props.match.params.id,
+    },
+  };
 });
-
-export default withProductDetails(
-  connect(mapStateToProps)(ProductDetails),
-  (props) => {
-    return {
-      variables: {
-        id: props.match.params.id,
-      },
-    };
-  }
-);
