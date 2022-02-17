@@ -62,8 +62,14 @@ class MiniCart extends Component {
         </Title>
         {this.renderProducts()}
         <Actions>
-          <Anchor to="/cart">View Bag</Anchor>
-          <Anchor to="/checkout" disabled={isEmpty(cartItems)}>
+          <Anchor to="/cart" onClick={this.props.closeMiniCart}>
+            View Bag
+          </Anchor>
+          <Anchor
+            to="/checkout"
+            disabled={isEmpty(cartItems)}
+            onClick={this.props.closeMiniCart}
+          >
             Check Out
           </Anchor>
         </Actions>
