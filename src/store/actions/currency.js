@@ -6,6 +6,12 @@ export const toggleCurrency = () => {
   };
 };
 
+export const closeCurrency = () => {
+  return {
+    type: actionTypes.CLOSE_CURRENCY,
+  };
+};
+
 export const switchCurrency = (symbol) => {
   return {
     type: actionTypes.SWITCH_CURRENCY,

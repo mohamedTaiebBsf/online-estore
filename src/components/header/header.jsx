@@ -28,6 +28,24 @@ class Header extends Component {
     return total;
   };
 
+  toggleCurrency = () => {
+    const { showMiniCart } = this.props;
+    if (showMiniCart) {
+      this.props.closeMiniCart();
+    }
+
+    this.props.toggleCurr();
+  };
+
+  toggleMiniCart = () => {
+    const { showCurrency } = this.props;
+    if (showCurrency) {
+      this.props.closeCurr();
+    }
+
+    this.props.toggleMiniCart();
+  };
+
   render() {
     return (
       <Container>
@@ -37,7 +55,7 @@ class Header extends Component {
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
           <Wrapper>
-            <CurrencySymbol onClick={this.props.toggleCurr}>
+            <CurrencySymbol onClick={this.toggleCurrency}>
               {this.props.currency}
               <Arrow
                 src="/assets/images/arrow.svg"
@@ -45,7 +63,7 @@ class Header extends Component {
                 $show={this.props.showCurrency}
               />
             </CurrencySymbol>
-            <CartContainer onClick={this.props.toggleMiniCart}>
+            <CartContainer onClick={this.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
               {!isEmpty(this.props.cartItems) && (
                 <CartBadge>{this.displayBadgeTotal()}</CartBadge>

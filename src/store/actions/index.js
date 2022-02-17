@@ -1,6 +1,6 @@
 export { setCurrentCategoy } from "./category";
 
-export { switchCurrency, toggleCurrency } from "./currency";
+export { switchCurrency, toggleCurrency, closeCurrency } from "./currency";
 
 export {
   addToCart,

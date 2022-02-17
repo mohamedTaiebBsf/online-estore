@@ -18,6 +18,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         showCurrencies: !state.showCurrencies,
       };
+    case actionsTypes.CLOSE_CURRENCY:
+      return {
+        ...state,
+        showCurrencies: false,
+      };
     default:
       return state;
   }

@@ -26,5 +26,6 @@ export const mapDispatchToProps = (dispatch) => ({
   clearOptions: () => dispatch(actionCreators.clearSelectedOptions()),
   switchCurr: (symbol) => dispatch(actionCreators.switchCurrency(symbol)),
   toggleCurr: () => dispatch(actionCreators.toggleCurrency()),
+  closeCurr: () => dispatch(actionCreators.closeCurrency()),
   setCateg: (category) => dispatch(actionCreators.setCurrentCategoy(category)),
 });
