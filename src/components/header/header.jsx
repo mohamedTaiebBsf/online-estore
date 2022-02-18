@@ -46,11 +46,24 @@ class Header extends Component {
     this.props.toggleMiniCart();
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { currency, showCurrency, cartItems } = this.props;
+
+    if (
+      nextProps.currency !== currency ||
+      nextProps.showCurrency !== showCurrency ||
+      nextProps.cartItems !== cartItems
+    )
+      return true;
+
+    return false;
+  }
+
   render() {
     return (
       <Container>
         <Wrapper>
-          <Categories category={this.props.categ} />
+          <Categories />
           <Link to="/" onClick={() => this.props.setCateg("all")}>
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>
@@ -70,15 +83,8 @@ class Header extends Component {
               )}
             </CartContainer>
           </Wrapper>
-          <Currencies
-            currency={this.props.currency}
-            show={this.props.showCurrency}
-            switch={this.props.switchCurr}
-          />
-          <MiniCart
-            show={this.props.showMiniCart}
-            cartItems={this.props.cartItems}
-          />
+          <Currencies />
+          <MiniCart />
         </Wrapper>
       </Container>
     );

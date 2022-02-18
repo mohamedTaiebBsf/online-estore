@@ -3,6 +3,18 @@ import Attribute from "./attribute/attribute";
 import { Container } from "./styles";
 
 class Attributes extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const { attributes, selectedOptions } = this.props;
+
+    if (
+      nextProps.attributes !== attributes ||
+      nextProps.selectedOptions !== selectedOptions
+    )
+      return true;
+
+    return false;
+  }
+
   render() {
     return (
       <Container $isCart={this.props.isCart}>

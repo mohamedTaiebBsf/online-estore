@@ -31,7 +31,7 @@ class MiniCart extends Component {
       if (price) total += price.amount * item.quantity;
     });
 
-    return format(total);
+    return `${currency}${format(total)}`;
   };
 
   renderProducts = () => {
@@ -52,11 +52,23 @@ class MiniCart extends Component {
     return <Title className="empty-cart">Your Cart is empty!</Title>;
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { showMiniCart, cartItems } = this.props;
+
+    if (
+      nextProps.showMiniCart !== showMiniCart ||
+      nextProps.cartItems !== cartItems
+    )
+      return true;
+
+    return false;
+  }
+
   render() {
-    const { show, cartItems } = this.props;
+    const { showMiniCart, cartItems } = this.props;
 
     return (
-      <Container className={show && "open"}>
+      <Container className={showMiniCart && "open"}>
         <Title>
           My Bag, <TotalItems>{this.displayTotalItems()}</TotalItems>
         </Title>

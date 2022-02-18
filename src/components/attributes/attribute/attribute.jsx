@@ -6,7 +6,6 @@ class Attribute extends Component {
   render() {
     const { name, items, id } = this.props.attribute;
     const isColor = name.toLowerCase() === "color";
-    console.log("isCart:", this.props.isCart);
 
     return (
       <Container

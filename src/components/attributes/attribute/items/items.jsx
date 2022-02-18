@@ -4,7 +4,6 @@ import Container from "./styles";
 
 class Items extends Component {
   selectOption = (option) => {
-    console.log(option, this.props.attributeId);
     if (this.props.select) {
       this.props.select(this.props.attributeId, option.id);
     }

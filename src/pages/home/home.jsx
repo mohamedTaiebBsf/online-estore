@@ -5,6 +5,14 @@ import { storeConsumer } from "../../store";
 import { Title } from "./styles";
 
 class Home extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const { categ } = this.props;
+
+    if (nextProps.categ !== categ) return true;
+
+    return false;
+  }
+
   render() {
     return (
       <Layout>

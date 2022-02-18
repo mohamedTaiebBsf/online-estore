@@ -17,6 +17,18 @@ import {
 } from "./styles";
 
 class CartProduct extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const { currency, product } = this.props;
+
+    if (
+      nextProps.currency !== currency ||
+      nextProps.product.quantity !== product.quantity
+    )
+      return true;
+
+    return false;
+  }
+
   render() {
     const {
       id,

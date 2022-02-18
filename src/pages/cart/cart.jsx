@@ -31,6 +31,15 @@ class Cart extends Component {
     return format(total);
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { currency, cartItems } = this.props;
+
+    if (nextProps.currency !== currency || nextProps.cartItems !== cartItems)
+      return true;
+
+    return false;
+  }
+
   renderCart = () => {
     const { cartItems } = this.props;
 

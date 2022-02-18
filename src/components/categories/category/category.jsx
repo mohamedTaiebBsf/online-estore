@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { storeConsumer } from "../../../store";
 import { Container, Anchor } from "./styles";
 
 class Category extends Component {
+  categClicked = () => {
+    const { name } = this.props.category;
+    this.props.setCateg(name);
+  };
+
   render() {
     const { name } = this.props.category;
 
     return (
       <Container
         className={this.props.active && "active"}
-        onClick={() => this.props.setCateg(name)}
+        onClick={this.categClicked}
       >
         <Anchor to={`/?${name}`}>{name}</Anchor>
       </Container>
@@ -17,4 +21,4 @@ class Category extends Component {
   }
 }
 
-export default storeConsumer(Category);
+export default Category;

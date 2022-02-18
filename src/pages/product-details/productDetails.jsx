@@ -17,9 +17,16 @@ import {
 } from "./styles";
 
 class ProductDetails extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const { currency } = this.props;
+
+    if (nextProps.currency !== currency) return true;
+
+    return false;
+  }
+
   render() {
     const { product } = this.props.data;
-    console.log("Product Details", this.props);
     return (
       <Layout>
         <Container>
@@ -39,10 +46,12 @@ class ProductDetails extends Component {
   }
 }
 
-export default withProductDetails(storeConsumer(ProductDetails), (props) => {
-  return {
-    variables: {
-      id: props.match.params.id,
-    },
-  };
-});
+export default storeConsumer(
+  withProductDetails(ProductDetails, (props) => {
+    return {
+      variables: {
+        id: props.match.params.id,
+      },
+    };
+  })
+);

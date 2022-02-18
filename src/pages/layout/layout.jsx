@@ -5,6 +5,18 @@ import { storeConsumer } from "../../store";
 import Container from "./styles";
 
 class Layout extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    const { showMiniCart, children } = this.props;
+
+    if (
+      nextProps.showMiniCart !== showMiniCart ||
+      nextProps.children !== children
+    )
+      return true;
+
+    return false;
+  }
+
   render() {
     return (
       <React.Fragment>
