@@ -90,6 +90,7 @@ class Products extends Component {
     );
 
     if (isEmpty(product.attributes)) {
+      this.props.toast("success", "Product added to the Cart");
       return this.props.addToCart(itemToAdd);
     }
 
@@ -104,6 +105,7 @@ class Products extends Component {
     itemToAdd.selectedOptions = this.props.options;
     this.props.addToCart(itemToAdd);
     this.closeModal();
+    this.props.toast("success", "Product added to the Cart");
   };
 
   render() {

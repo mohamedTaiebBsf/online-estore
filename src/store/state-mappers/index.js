@@ -7,6 +7,7 @@ export const mapStateToProps = (state) => ({
   showMiniCart: state.cart.showMiniCart,
   categ: state.categ.selectedCategory,
   options: state.options.selectedOptions,
+  toasts: state.toast.toasts,
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -28,4 +29,6 @@ export const mapDispatchToProps = (dispatch) => ({
   toggleCurr: () => dispatch(actionCreators.toggleCurrency()),
   closeCurr: () => dispatch(actionCreators.closeCurrency()),
   setCateg: (category) => dispatch(actionCreators.setCurrentCategoy(category)),
+  toast: (mode, message) => dispatch(actionCreators.addToast(mode, message)),
+  removeToast: (toastId) => dispatch(actionCreators.removeToast(toastId)),
 });

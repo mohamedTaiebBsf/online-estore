@@ -3,9 +3,7 @@
 :root {
   --white: #fff;
   --black: #1d1f22;
-  --black-secondary: #292929;
   --gray: #8d8f9a;
-  --gray-secondary: #a6a6a6;
   --backdrop: rgba(57, 55, 72, 0.22);
   --green: #5ece7b;
 }

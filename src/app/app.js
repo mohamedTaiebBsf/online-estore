@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import routes from "../config/routes";
+import ToastContainer from "../components/toastify/toastContainer";
 import { Switch, Route } from "react-router-dom";
 import { HttpProvider } from "../services/http-service";
 import { StoreProvider } from "../store";
@@ -20,6 +21,7 @@ class App extends Component {
               />
             ))}
           </Switch>
+          <ToastContainer />
         </HttpProvider>
       </StoreProvider>
     );

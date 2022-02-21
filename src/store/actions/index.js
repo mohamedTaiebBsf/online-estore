@@ -17,3 +17,5 @@ export {
   updateSelectedOption,
   clearSelectedOptions,
 } from "./selectedOptions";
+
+export { addToast, removeToast } from "./toast";

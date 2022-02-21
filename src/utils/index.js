@@ -74,6 +74,15 @@ const serialize = (data) => JSON.stringify(data);
 
 const unserialize = (data) => JSON.parse(data);
 
+const uuid = () => {
+  const s4 = () =>
+    Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+
+  return s4() + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+};
+
 export {
   displayPrice,
   omit,
@@ -84,4 +93,5 @@ export {
   pluralize,
   serialize,
   unserialize,
+  uuid,
 };
