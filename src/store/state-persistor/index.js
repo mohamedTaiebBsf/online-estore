@@ -8,7 +8,13 @@ const load = () => {
 
     if (loadedState === null) return undefined;
 
-    return unserialize(loadedState);
+    loadedState = unserialize(loadedState);
+
+    return {
+      curr: loadedState.curr,
+      cart: loadedState.cart,
+      categ: loadedState.categ,
+    };
   } catch (error) {
     console.log(error);
 

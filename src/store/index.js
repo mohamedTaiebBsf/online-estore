@@ -14,9 +14,9 @@ store.subscribe(() => {
   const state = store.getState();
 
   persistor.save({
-    cart: state.cart,
-    categ: state.categ,
-    curr: state.curr,
+    cart: { cartProducts: state.cart.cartProducts },
+    categ: { selectedCategory: state.categ.selectedCategory },
+    curr: { currentCurrency: state.curr.currentCurrency },
   });
 });
 
