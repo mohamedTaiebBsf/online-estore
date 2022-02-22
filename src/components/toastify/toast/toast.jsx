@@ -9,17 +9,17 @@ class Toast extends Component {
   };
 
   handleStartTimer = () => {
-    let width = this.state.width;
-
     let intervalId = setInterval(() => {
       this.setState((prevState) => {
-        if (width < 100) {
+        if (prevState.width < 100) {
           return { width: prevState.width + 0.5 };
+        } else {
+          this.handleAutomaticClose();
+
+          return {
+            exitedToast: true,
+          };
         }
-
-        this.handlePauseTimer();
-
-        return prevState;
       });
     }, 20);
 
@@ -32,7 +32,6 @@ class Toast extends Component {
 
   handleAutomaticClose = () => {
     this.handlePauseTimer();
-    this.setState({ exitedToast: true });
     setTimeout(this.props.onClose, 0.1);
   };
 
@@ -49,12 +48,6 @@ class Toast extends Component {
         <ProgressBar style={{ width: `${this.state.width}%` }} />
       </Container>
     );
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.width === 100) {
-      this.handleAutomaticClose();
-    }
   }
 
   componentWillUnmount() {

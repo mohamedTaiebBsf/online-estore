@@ -8,6 +8,8 @@ import {
 } from "../schemas";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
+import { storeConsumer } from "../store";
+import { ucFirst } from "../utils";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND_URL,
@@ -22,6 +24,33 @@ const HttpProvider = class extends Component {
   }
 };
 
+const ApolloError = storeConsumer(
+  class extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.toasts !== this.props.toasts) return true;
+
+      return false;
+    }
+
+    errorMessage = () => {
+      const { error, name } = this.props;
+
+      if (error.message.includes("400"))
+        return `${ucFirst(name)} - Bad Request 400`;
+
+      return `Network is offline. Unable to fetch ${name.toUpperCase()}. Please, check your internet connection!`;
+    };
+
+    render() {
+      return null;
+    }
+
+    componentDidMount() {
+      this.props.toast("error", this.errorMessage());
+    }
+  }
+);
+
 const handleQuery = (WrappedComponent, schema, options = null) =>
   graphql(schema, {
     options: options && options.callback,
@@ -30,10 +59,14 @@ const handleQuery = (WrappedComponent, schema, options = null) =>
       renderData = () => {
         const { data } = this.props;
 
-        if (data.loading) {
+        if (data.loading)
           return <Spinner styles={options && options.spinnerStyles} />;
+
+        if (data.error) {
+          return (
+            <ApolloError error={data.error} name={options && options.name} />
+          );
         }
-        if (data.error) return <h1>{data.error.message}</h1>;
 
         return <WrappedComponent data={data} {...this.props} />;
       };
@@ -44,8 +77,8 @@ const handleQuery = (WrappedComponent, schema, options = null) =>
     }
   );
 
-const withCategories = (WrappedComponent) =>
-  handleQuery(WrappedComponent, GET_CATEGORIES);
+const withCategories = (WrappedComponent, options) =>
+  handleQuery(WrappedComponent, GET_CATEGORIES, options);
 
 const withProducts = (WrappedComponent, options) =>
   handleQuery(WrappedComponent, GET_CATEGORY_PRODUCTS, options);

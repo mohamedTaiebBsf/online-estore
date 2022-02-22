@@ -31,4 +31,8 @@ class Categories extends Component {
   }
 }
 
-export default storeConsumer(withCategories(Categories));
+export default storeConsumer(
+  withCategories(Categories, {
+    name: "categories",
+  })
+);

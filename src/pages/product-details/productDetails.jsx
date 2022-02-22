@@ -51,6 +51,7 @@ class ProductDetails extends Component {
 
 export default storeConsumer(
   withProductDetails(ProductDetails, {
+    name: "product details",
     callback: (props) => {
       return {
         variables: {

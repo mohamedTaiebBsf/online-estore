@@ -37,6 +37,7 @@ class Currencies extends Component {
 
 export default storeConsumer(
   withCurrencies(Currencies, {
+    name: "currenies",
     spinnerStyles,
   })
 );

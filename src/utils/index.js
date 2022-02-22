@@ -87,6 +87,8 @@ const uuid = () => {
   return s4() + s4() + "-" + s4() + "-" + s4() + s4() + s4();
 };
 
+const ucFirst = (str) => str[0].toUpperCase() + str.slice(1);
+
 export {
   omit,
   copy,
@@ -97,4 +99,5 @@ export {
   serialize,
   unserialize,
   uuid,
+  ucFirst,
 };
