@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Attribute from "./attribute/attribute";
+import { isEmpty } from "../../utils";
 import { Container } from "./styles";
 
 class Attributes extends Component {
@@ -18,7 +19,7 @@ class Attributes extends Component {
   render() {
     return (
       <Container $isCart={this.props.isCart}>
-        {this.props.attributes.length > 0 &&
+        {!isEmpty(this.props.attributes) &&
           this.props.attributes.map((attribute) => (
             <Attribute
               key={attribute.id}

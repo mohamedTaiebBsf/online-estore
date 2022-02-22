@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Layout from "../layout/layout";
 import CartProducts from "../../components/cart/cart-products/cartProducts";
+import * as cartService from "../../services/cart-service";
 import { storeConsumer } from "../../store";
-import { isEmpty, format } from "../../utils";
+import { isEmpty } from "../../utils";
 import {
   Title,
   Wrapper,
@@ -17,20 +18,6 @@ import {
 } from "./styles";
 
 class Cart extends Component {
-  displayTotalPrice = () => {
-    const { cartItems, currency } = this.props;
-    let total = 0;
-
-    cartItems.forEach((item) => {
-      const price = item.prices.find(
-        (price) => currency === price.currency.symbol
-      );
-      if (price) total += price.amount * item.quantity;
-    });
-
-    return format(total);
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     const { currency, cartItems } = this.props;
 
@@ -41,7 +28,7 @@ class Cart extends Component {
   }
 
   renderCart = () => {
-    const { cartItems } = this.props;
+    const { cartItems, currency } = this.props;
 
     if (!isEmpty(cartItems)) {
       return (
@@ -50,7 +37,7 @@ class Cart extends Component {
           <Wrapper>
             <TotalPrice>
               <Label>Total: </Label>
-              <Price>{this.displayTotalPrice()}</Price>
+              <Price>{cartService.totalPrice(cartItems, currency)}</Price>
             </TotalPrice>
             <Anchor to="/checkout">Check Out</Anchor>
           </Wrapper>

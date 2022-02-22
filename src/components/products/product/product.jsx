@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { displayPrice } from "../../../utils";
+import * as productService from "../../../services/product-service";
+import { isEmpty } from "../../../utils";
 import {
   Container,
   Wrapper,
@@ -27,6 +28,7 @@ class Product extends Component {
   }
   render() {
     const { gallery, brand, name, inStock, id, prices } = this.props.product;
+    const { add, currentCurrency } = this.props;
 
     return (
       <React.Fragment>
@@ -36,7 +38,7 @@ class Product extends Component {
               <ImageContainer>
                 <Image
                   src={
-                    gallery.length > 0
+                    !isEmpty(gallery)
                       ? gallery[0]
                       : "/assets/images/no-images.png"
                   }
@@ -46,7 +48,7 @@ class Product extends Component {
               </ImageContainer>
             </Anchor>
             {inStock && (
-              <CartContainer onClick={this.props.add}>
+              <CartContainer onClick={add}>
                 <CartIcon src="/assets/images/cart-icon.svg" />
               </CartContainer>
             )}
@@ -56,7 +58,7 @@ class Product extends Component {
               {brand} - {name}
             </Title>
           </Anchor>
-          <Price>{displayPrice(prices, this.props.currentCurrency)}</Price>
+          <Price>{productService.price(prices, currentCurrency)}</Price>
         </Container>
       </React.Fragment>
     );

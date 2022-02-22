@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Product from "./product/product";
 import Attributes from "../attributes/attributes";
 import Modal from "../UI/modal/modal";
+import * as cartService from "../../services/cart-service";
 import { withProducts } from "../../services/http-service";
 import { storeConsumer } from "../../store";
+import { copy, isEmpty, findById } from "../../utils";
 import { Container, ModalTitle, ModalActions, ModalButton } from "./styles";
-import { copy, omit, isEmpty } from "../../utils";
 
 class Products extends Component {
   state = {
@@ -46,51 +47,37 @@ class Products extends Component {
   };
 
   selectOption = (attrId, itemId) => {
-    const option = {
+    const newOption = {
       id: attrId,
       selectItem: itemId,
     };
 
     if (isEmpty(this.props.options)) {
-      return this.props.addOption(option);
+      return this.props.addOption(newOption);
     }
 
-    const attr = this.props.options.find((elt) => elt.id === attrId);
+    const option = findById(this.props.options, attrId);
 
-    if (attr) {
-      return this.props.updateOption(option);
+    if (option) {
+      return this.props.updateOption(newOption);
     }
 
-    this.props.addOption(option);
+    this.props.addOption(newOption);
   };
 
   addToCart = (product) => {
-    const omittedAttrs = ["inStock", "description", "category", "gallery"];
     const item = copy(product);
     const cart = copy(this.props.cartItems);
 
-    // If Product is already in Cart
-    // Then, we should update product qty
-    const isInCart = cart.reduce(
-      (prev, curr) => curr.id === product.id || prev,
-      false
-    );
-
-    if (isInCart) {
+    if (cartService.has(cart, item)) {
+      this.props.toast("warning", `${item.name} added again`);
       return this.props.increaseQty(item.id);
     }
 
-    const itemToAdd = omit(
-      {
-        ...item,
-        image: product.gallery[0],
-        quantity: 1,
-      },
-      omittedAttrs
-    );
+    const itemToAdd = cartService.customizeItem(item);
 
-    if (isEmpty(product.attributes)) {
-      this.props.toast("success", "Product added to the Cart");
+    if (isEmpty(item.attributes)) {
+      this.props.toast("success", `${item.name} added to the Cart!`);
       return this.props.addToCart(itemToAdd);
     }
 
@@ -105,7 +92,7 @@ class Products extends Component {
     itemToAdd.selectedOptions = this.props.options;
     this.props.addToCart(itemToAdd);
     this.closeModal();
-    this.props.toast("success", "Product added to the Cart");
+    this.props.toast("success", `${item.name} added to the Cart!`);
   };
 
   render() {

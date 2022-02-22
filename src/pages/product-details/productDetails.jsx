@@ -4,7 +4,7 @@ import Attributes from "../../components/attributes/attributes";
 import ProductImages from "../../components/product-images/productImages";
 import { withProductDetails } from "../../services/http-service";
 import { storeConsumer } from "../../store";
-import { displayPrice } from "../../utils";
+import * as productService from "../../services/product-service";
 import {
   Container,
   Descriptions,
@@ -27,6 +27,7 @@ class ProductDetails extends Component {
 
   render() {
     const { product } = this.props.data;
+
     return (
       <Layout>
         <Container>
@@ -36,7 +37,9 @@ class ProductDetails extends Component {
             <Name>{product.name}</Name>
             <Attributes attributes={product.attributes} />
             <SubTitle>Price: </SubTitle>
-            <Price>{displayPrice(product.prices, this.props.currency)}</Price>
+            <Price>
+              {productService.price(product.prices, this.props.currency)}
+            </Price>
             <Button>Add To Cart</Button>
             <Text dangerouslySetInnerHTML={{ __html: product.description }} />
           </Descriptions>

@@ -6,4 +6,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export { Container };
+const toastParentStyle = `
+  position: fixed;
+  top: 4.375rem;
+  right: 0.625rem;
+  z-index: 1000
+`;
+
+export { Container, toastParentStyle };

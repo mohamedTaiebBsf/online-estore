@@ -45,7 +45,7 @@ const Container = styled.div`
   }
 
   background: ${(props) => {
-    switch (props.mode) {
+    switch (props.$mode) {
       case "success":
         return "#28a745";
       case "warning":

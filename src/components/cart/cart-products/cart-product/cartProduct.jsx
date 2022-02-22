@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Attributes from "../../../attributes/attributes";
 import { storeConsumer } from "../../../../store";
-import { displayPrice } from "../../../../utils";
+import * as productService from "../../../../services/product-service";
 import {
   Container,
   Column,
@@ -51,7 +51,7 @@ class CartProduct extends Component {
         <Column>
           <Brand>{brand}</Brand>
           <Name>{name}</Name>
-          <Price>{displayPrice(prices, this.props.currency)}</Price>
+          <Price>{productService.price(prices, this.props.currency)}</Price>
           <Attributes
             attributes={attributes}
             selectedOptions={selectedOptions}

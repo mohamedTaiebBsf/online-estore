@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import CartProducts from "../cart-products/cartProducts";
+import * as cartService from "../../../services/cart-service";
 import { storeConsumer } from "../../../store";
-import { isEmpty, pluralize, format } from "../../../utils";
+import { isEmpty, pluralize } from "../../../utils";
 import {
   Container,
   Title,
@@ -14,28 +15,14 @@ import {
 } from "./styles";
 
 class MiniCart extends Component {
-  displayTotalItems = () => {
+  displayTitle = () => {
     const { cartItems } = this.props;
 
     return `${cartItems.length} ${pluralize(cartItems.length, "product")}`;
   };
 
-  displayTotalPrice = () => {
-    const { cartItems, currency } = this.props;
-    let total = 0;
-
-    cartItems.forEach((item) => {
-      const price = item.prices.find(
-        (price) => currency === price.currency.symbol
-      );
-      if (price) total += price.amount * item.quantity;
-    });
-
-    return `${currency}${format(total)}`;
-  };
-
   renderProducts = () => {
-    const { cartItems } = this.props;
+    const { cartItems, currency } = this.props;
 
     if (!isEmpty(cartItems)) {
       return (
@@ -43,7 +30,7 @@ class MiniCart extends Component {
           <CartProducts products={cartItems} />
           <TotalPrice>
             <Label>Total</Label>
-            <Price>{this.displayTotalPrice()}</Price>
+            <Price>{cartService.totalPrice(cartItems, currency)}</Price>
           </TotalPrice>
         </React.Fragment>
       );
@@ -70,7 +57,7 @@ class MiniCart extends Component {
     return (
       <Container className={showMiniCart && "open"}>
         <Title>
-          My Bag, <TotalItems>{this.displayTotalItems()}</TotalItems>
+          My Bag, <TotalItems>{this.displayTitle()}</TotalItems>
         </Title>
         {this.renderProducts()}
         <Actions>

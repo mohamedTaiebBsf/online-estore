@@ -1,5 +1,5 @@
 import * as actionsTypes from "../actions/actionTypes";
-import { copy } from "../../utils";
+import * as cartService from "../../services/cart-service";
 
 const initialState = {
   showMiniCart: false,
@@ -7,63 +7,93 @@ const initialState = {
 };
 
 const increaseQty = (state, productId) => {
-  const cart = copy(state.cartProducts);
-  const item = cart.find((elt) => elt.id === productId);
-  cart[cart.indexOf(item)].quantity++;
-  return {
-    ...state,
-    cartProducts: cart,
-  };
-};
-
-const decreaseQty = (state, productId) => {
-  const cart = copy(state.cartProducts);
-  const item = cart.find((elt) => elt.id === productId);
-  if (cart[cart.indexOf(item)].quantity === 1) return state;
-  cart[cart.indexOf(item)].quantity--;
-  return {
-    ...state,
-    cartProducts: cart,
-  };
-};
-
-const removeProduct = (state, productId) => {
-  let cart = copy(state.cartProducts);
-  const item = cart.find((elt) => elt.id === productId);
-  if (item) {
-    cart = cart.filter((product) => product.id !== productId);
+  try {
+    const cartItems = cartService.increaseItemQuantity(
+      state.cartProducts,
+      productId
+    );
 
     return {
       ...state,
-      cartProducts: cart,
+      cartProducts: cartItems,
     };
+  } catch (error) {
+    return state;
   }
+};
 
-  return state;
+const decreaseQty = (state, productId) => {
+  try {
+    const cartItems = cartService.decreaseItemQuantity(
+      state.cartProducts,
+      productId
+    );
+
+    if (cartItems === null) return state;
+
+    return {
+      ...state,
+      cartProducts: cartItems,
+    };
+  } catch (error) {
+    return state;
+  }
+};
+
+const removeProduct = (state, productId) => {
+  try {
+    const cartItems = cartService.removeItemFromProduct(
+      state.cartProducts,
+      productId
+    );
+
+    return {
+      ...state,
+      cartProducts: cartItems,
+    };
+  } catch (error) {
+    return state;
+  }
+};
+
+const toggleMiniCart = (state) => {
+  return {
+    ...state,
+    showMiniCart: !state.showMiniCart,
+  };
+};
+
+const closeMiniCart = (state) => {
+  return {
+    ...state,
+    showMiniCart: false,
+  };
+};
+
+const clearCart = (state) => {
+  return {
+    ...state,
+    cartProducts: [],
+  };
+};
+
+const addToCart = (state, item) => {
+  return {
+    ...state,
+    cartProducts: [...state.cartProducts, item],
+  };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.TOGGLE_MINI_CART:
-      return {
-        ...state,
-        showMiniCart: !state.showMiniCart,
-      };
+      return toggleMiniCart(state);
     case actionsTypes.CLOSE_MINI_CART:
-      return {
-        ...state,
-        showMiniCart: false,
-      };
+      return closeMiniCart(state);
     case actionsTypes.ADD_TO_CART:
-      return {
-        ...state,
-        cartProducts: [...state.cartProducts, action.payload],
-      };
+      return addToCart(state, action.payload);
     case actionsTypes.CLEAR_CART:
-      return {
-        ...state,
-        cartProducts: [],
-      };
+      return clearCart(state);
     case actionsTypes.REMOVE_PRODUCT_FROM_CART:
       return removeProduct(state, action.payload);
     case actionsTypes.INCREASE_QUANTITY:

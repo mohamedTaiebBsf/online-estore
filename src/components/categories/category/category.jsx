@@ -4,6 +4,7 @@ import { Container, Anchor } from "./styles";
 class Category extends Component {
   categClicked = () => {
     const { name } = this.props.category;
+
     this.props.setCateg(name);
   };
 

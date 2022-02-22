@@ -1,11 +1,3 @@
-const displayPrice = (prices, currentCurrency) => {
-  const price = prices.find(
-    (price) => currentCurrency === price.currency.symbol
-  );
-
-  return `${price.currency.symbol}${price.amount}`;
-};
-
 const omit = (obj, keys) => {
   const keysToRemove = new Set(keys);
 
@@ -47,7 +39,19 @@ const copy = (data) => {
 };
 
 const format = (number) => {
-  return new Intl.NumberFormat().format(number.toFixed(2));
+  const str = number.toFixed(2).toString();
+
+  const arr = str.split(".");
+  let integer = arr[0];
+  const decimal = arr.length > 1 ? "." + arr[1] : "";
+
+  const regex = /(\d+)(\d{3})/;
+
+  while (regex.test(integer)) {
+    integer = integer.replace(regex, "$1,$2");
+  }
+
+  return integer + decimal;
 };
 
 const isEmpty = (object) => {
@@ -84,7 +88,6 @@ const uuid = () => {
 };
 
 export {
-  displayPrice,
   omit,
   copy,
   format,

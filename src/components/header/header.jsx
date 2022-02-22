@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Categories from "../categories/categories";
 import Currencies from "../currencies/currencies";
 import MiniCart from "../cart/mini-cart/miniCart";
+import * as cartService from "../../services/cart-service";
 import { Link } from "react-router-dom";
 import { storeConsumer } from "../../store";
 import { isEmpty } from "../../utils";
@@ -17,19 +18,9 @@ import {
 } from "./styles";
 
 class Header extends Component {
-  displayBadgeTotal = () => {
-    const { cartItems } = this.props;
-    let total = 0;
-
-    cartItems.forEach((item) => {
-      total += item.quantity;
-    });
-
-    return total;
-  };
-
   toggleCurrency = () => {
     const { showMiniCart } = this.props;
+
     if (showMiniCart) {
       this.props.closeMiniCart();
     }
@@ -39,6 +30,7 @@ class Header extends Component {
 
   toggleMiniCart = () => {
     const { showCurrency } = this.props;
+
     if (showCurrency) {
       this.props.closeCurr();
     }
@@ -79,7 +71,9 @@ class Header extends Component {
             <CartContainer onClick={this.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
               {!isEmpty(this.props.cartItems) && (
-                <CartBadge>{this.displayBadgeTotal()}</CartBadge>
+                <CartBadge>
+                  {cartService.countItems(this.props.cartItems)}
+                </CartBadge>
               )}
             </CartContainer>
           </Wrapper>

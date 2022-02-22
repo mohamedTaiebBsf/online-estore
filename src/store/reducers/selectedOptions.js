@@ -1,30 +1,48 @@
 import * as actionsTypes from "../actions/actionTypes";
-import { copy } from "../../utils";
+import * as productService from "../../services/product-service";
 
 const initialState = {
   selectedOptions: [],
 };
 
+const updateOption = (state, attribute) => {
+  try {
+    const options = productService.updateSelectedOption(
+      state.selectedOptions,
+      attribute
+    );
+
+    return {
+      ...state,
+      selectedOptions: options,
+    };
+  } catch (error) {
+    return state;
+  }
+};
+
+const addSelectedOption = (state, option) => {
+  return {
+    ...state,
+    selectedOptions: [...state.selectedOptions, option],
+  };
+};
+
+const clearSelectedOptions = (state) => {
+  return {
+    ...state,
+    selectedOptions: [],
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.ADD_SELECTED_OPTION:
-      return {
-        ...state,
-        selectedOptions: [...state.selectedOptions, action.payload],
-      };
+      return addSelectedOption(state, action.payload);
     case actionsTypes.UPDATE_SELECTED_OPTION:
-      const options = copy(state.selectedOptions);
-      const option = options.find((elt) => elt.id === action.payload.id);
-      options[options.indexOf(option)].selectItem = action.payload.selectItem;
-      return {
-        ...state,
-        selectedOptions: options,
-      };
+      return updateOption(state, action.payload);
     case actionsTypes.CLEAR_SELECTED_OPTIONS:
-      return {
-        ...state,
-        selectedOptions: [],
-      };
+      return clearSelectedOptions(state);
     default:
       return state;
   }

@@ -2,8 +2,8 @@ import ReactDOM from "react-dom";
 import { Component } from "react";
 import Toast from "./toast/toast";
 import { storeConsumer } from "../../store";
-import { Container } from "./styles";
 import { uuid } from "../../utils";
+import { Container, toastParentStyle } from "./styles";
 
 class ToastContainer extends Component {
   state = {
@@ -46,11 +46,10 @@ class ToastContainer extends Component {
   }
 
   componentDidMount() {
-    const toastContainer = document.createElement("div");
-    toastContainer.id = this.state.containerId;
-    toastContainer.style =
-      "position: fixed; top: 4.375rem; right: 0.625rem; z-index: 1000";
-    document.body.prepend(toastContainer);
+    const toastParent = document.createElement("div");
+    toastParent.id = this.state.containerId;
+    toastParent.style = toastParentStyle;
+    document.body.prepend(toastParent);
 
     this.setState({ loaded: true });
   }
