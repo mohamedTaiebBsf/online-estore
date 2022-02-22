@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Currency from "./currency/currency";
 import { withCurrencies } from "../../services/http-service";
 import { storeConsumer } from "../../store";
-import { Container } from "./styles";
+import { Container, spinnerStyles } from "./styles";
 
 class Currencies extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -35,4 +35,8 @@ class Currencies extends Component {
   }
 }
 
-export default storeConsumer(withCurrencies(Currencies));
+export default storeConsumer(
+  withCurrencies(Currencies, {
+    spinnerStyles,
+  })
+);

@@ -22,4 +22,13 @@ const Container = styled.ul`
   }
 `;
 
-export { Container };
+const spinnerStyles = {
+  position: "absolute",
+  top: "1.625rem",
+  right: "2.4rem",
+  display: "block",
+  width: "1.25rem",
+  height: "1.25rem",
+};
+
+export { Container, spinnerStyles };

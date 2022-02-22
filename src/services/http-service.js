@@ -24,13 +24,15 @@ const HttpProvider = class extends Component {
 
 const handleQuery = (WrappedComponent, schema, options = null) =>
   graphql(schema, {
-    options: options,
+    options: options && options.callback,
   })(
     class extends Component {
       renderData = () => {
         const { data } = this.props;
 
-        if (data.loading) return <Spinner />;
+        if (data.loading) {
+          return <Spinner styles={options && options.spinnerStyles} />;
+        }
         if (data.error) return <h1>{data.error.message}</h1>;
 
         return <WrappedComponent data={data} {...this.props} />;
@@ -48,8 +50,8 @@ const withCategories = (WrappedComponent) =>
 const withProducts = (WrappedComponent, options) =>
   handleQuery(WrappedComponent, GET_CATEGORY_PRODUCTS, options);
 
-const withCurrencies = (WrappedComponent) =>
-  handleQuery(WrappedComponent, GET_CURRENCIES);
+const withCurrencies = (WrappedComponent, options) =>
+  handleQuery(WrappedComponent, GET_CURRENCIES, options);
 
 const withProductDetails = (WrappedComponent, options) =>
   handleQuery(WrappedComponent, GET_PRODUCT_DETAILS, options);

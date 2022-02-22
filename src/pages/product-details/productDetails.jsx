@@ -50,11 +50,13 @@ class ProductDetails extends Component {
 }
 
 export default storeConsumer(
-  withProductDetails(ProductDetails, (props) => {
-    return {
-      variables: {
-        id: props.match.params.id,
-      },
-    };
+  withProductDetails(ProductDetails, {
+    callback: (props) => {
+      return {
+        variables: {
+          id: props.match.params.id,
+        },
+      };
+    },
   })
 );

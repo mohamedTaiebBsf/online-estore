@@ -136,11 +136,13 @@ class Products extends Component {
 }
 
 export default storeConsumer(
-  withProducts(Products, (props) => {
-    return {
-      variables: {
-        categoryName: props.categ,
-      },
-    };
+  withProducts(Products, {
+    callback: (props) => {
+      return {
+        variables: {
+          categoryName: props.categ,
+        },
+      };
+    },
   })
 );

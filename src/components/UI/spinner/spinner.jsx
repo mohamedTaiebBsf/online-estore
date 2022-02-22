@@ -3,7 +3,7 @@ import Container from "./styles";
 
 class Spinner extends Component {
   render() {
-    return <Container />;
+    return <Container style={this.props.styles} />;
   }
 }
 
