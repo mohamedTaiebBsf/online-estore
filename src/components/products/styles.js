@@ -4,6 +4,25 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   grid-gap: 1.25rem;
+
+  @media (max-width: 37.5rem) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  @media (max-width: 27.5rem) {
+    grid-template-columns: 1fr !important;
+  }
+
+  @media (max-width: 72.5rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 90rem) {
+    grid-template-columns: repeat(4, minmax(18.75rem, 1fr));
+  }
+
+  @media (min-width: 112.5rem) {
+    grid-template-columns: repeat(5, minmax(18.75rem, 1fr));
+  }
 `;
 
 const ModalTitle = styled.h3`
