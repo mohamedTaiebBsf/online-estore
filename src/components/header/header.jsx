@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import Categories from "../categories/categories";
 import Currencies from "../currencies/currencies";
 import MiniCart from "../cart/mini-cart/miniCart";
+import Logo from "../UI/logo/logo";
 import * as cartService from "../../services/cart-service";
-import { Link } from "react-router-dom";
 import { storeConsumer } from "../../store";
 import { isEmpty } from "../../utils";
 import {
   Container,
   Wrapper,
-  Logo,
   CartContainer,
   CartIcon,
   CartBadge,
   CurrencySymbol,
   Arrow,
+  LogoWrapper,
 } from "./styles";
 import SideToggle from "../side-drawer/side-toggle/sideToggle";
 
@@ -78,9 +78,9 @@ class Header extends Component {
             open={this.props.openSideDrawer}
           />
           {this.props.browserSize > 550 && <Categories />}
-          <Link to="/" onClick={() => this.props.setCateg("all")}>
-            <Logo src="/assets/images/app-logo.svg" alt="logo" />
-          </Link>
+          <LogoWrapper>
+            <Logo onClick={() => this.props.setCateg("all")} />
+          </LogoWrapper>
           <Wrapper>
             <CurrencySymbol onClick={this.toggleCurrency}>
               {this.props.currency}

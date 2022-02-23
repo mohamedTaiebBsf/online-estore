@@ -8,6 +8,7 @@ const Container = styled.div`
   z-index: 100;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 6px 0px 8px -3px rgba(29, 31, 34, 0.8);
@@ -21,4 +22,15 @@ const Container = styled.div`
   }
 `;
 
-export { Container };
+const LogoWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 23.4375rem) {
+    display: block;
+    position: absolute;
+    top: 4.375rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+export { Container, LogoWrapper };

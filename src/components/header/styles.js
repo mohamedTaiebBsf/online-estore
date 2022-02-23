@@ -3,8 +3,12 @@ import styled from "styled-components";
 const Container = styled.header`
   padding: 0 6.25rem;
 
-  @media (max-width: 768px) {
-    padding: 0 3.125rem;
+  @media (max-width: 48rem) {
+    padding: 0 1.875rem;
+  }
+
+  @media (max-width: 23.4375rem) {
+    padding: 0 0.9375rem;
   }
 `;
 
@@ -16,7 +20,11 @@ const Wrapper = styled.div`
   padding: 0.625rem 0;
 `;
 
-const Logo = styled.img``;
+const LogoWrapper = styled.div`
+  @media (max-width: 23.4375rem) {
+    display: none;
+  }
+`;
 
 const CartContainer = styled.div`
   position: relative;
@@ -62,7 +70,7 @@ const Arrow = styled.img`
 export {
   Container,
   Wrapper,
-  Logo,
+  LogoWrapper,
   CartContainer,
   CartIcon,
   CartBadge,

@@ -76,6 +76,7 @@ const Actions = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const Anchor = styled(Link)`
@@ -95,6 +96,11 @@ const Anchor = styled(Link)`
 
   &:first-child {
     margin-right: 1rem;
+
+    @media (max-width: 28.75rem) {
+      margin-right: 0;
+      margin-bottom: 0.625rem;
+    }
   }
 
   &:last-child {
@@ -105,6 +111,11 @@ const Anchor = styled(Link)`
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &:disabled:hover,
+    &[disabled]:hover {
+      opacity: 1;
     }
 
     &:disabled,
@@ -118,6 +129,11 @@ const Anchor = styled(Link)`
         pointer-events: none;
       }
     }
+  }
+
+  @media (max-width: 28.75rem) {
+    width: 100%;
+    text-align: center;
   }
 `;
 

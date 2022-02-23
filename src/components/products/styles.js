@@ -26,6 +26,10 @@ const ModalButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  @media (max-width: 28.75rem) {
+    width: 100%;
+  }
 `;
 
 const ModalActions = styled.div`
@@ -37,6 +41,10 @@ const ModalActions = styled.div`
   & ${ModalButton}:first-child {
     background: var(--black);
     color: var(--white);
+
+    @media (max-width: 28.75rem) {
+      margin-bottom: 0.625rem;
+    }
   }
 
   & ${ModalButton}:last-child {
