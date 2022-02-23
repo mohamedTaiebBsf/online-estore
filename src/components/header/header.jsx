@@ -16,8 +16,23 @@ import {
   CurrencySymbol,
   Arrow,
 } from "./styles";
+import SideToggle from "../side-drawer/side-toggle/sideToggle";
 
 class Header extends Component {
+  state = {
+    showSideDrawer: false,
+  };
+
+  sideDrawerClosedHandler = () => {
+    this.setState({ showSideDrawer: false });
+  };
+
+  sideDrawerToggleHandler = () => {
+    this.setState((prevState) => {
+      return { showSideDrawer: !prevState.showSideDrawer };
+    });
+  };
+
   toggleCurrency = () => {
     const { showMiniCart } = this.props;
 
@@ -39,12 +54,15 @@ class Header extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { currency, showCurrency, cartItems } = this.props;
+    const { currency, showCurrency, cartItems, openSideDrawer, browserSize } =
+      this.props;
 
     if (
       nextProps.currency !== currency ||
       nextProps.showCurrency !== showCurrency ||
-      nextProps.cartItems !== cartItems
+      nextProps.cartItems !== cartItems ||
+      nextProps.openSideDrawer !== openSideDrawer ||
+      nextProps.browserSize !== browserSize
     )
       return true;
 
@@ -55,7 +73,11 @@ class Header extends Component {
     return (
       <Container>
         <Wrapper>
-          <Categories />
+          <SideToggle
+            toggleSide={this.props.onSideDrawerClick}
+            open={this.props.openSideDrawer}
+          />
+          {this.props.browserSize > 550 && <Categories />}
           <Link to="/" onClick={() => this.props.setCateg("all")}>
             <Logo src="/assets/images/app-logo.svg" alt="logo" />
           </Link>

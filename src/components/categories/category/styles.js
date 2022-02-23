@@ -5,6 +5,11 @@ const Anchor = styled(Link)`
   text-decoration: none;
   color: var(--black);
   display: inline-block;
+  transition: color 0.4s ease;
+
+  &:hover {
+    color: var(--green);
+  }
 `;
 
 const Container = styled.li`
@@ -31,6 +36,14 @@ const Container = styled.li`
   &.active ${Anchor} {
     font-weight: 600;
     color: var(--green);
+  }
+
+  @media (max-width: 34.375rem) {
+    margin-bottom: 5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `;
 

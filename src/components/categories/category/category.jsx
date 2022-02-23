@@ -5,6 +5,10 @@ class Category extends Component {
   categClicked = () => {
     const { name } = this.props.category;
 
+    if (this.props.sideDrawerClose) {
+      this.props.sideDrawerClose();
+    }
+
     this.props.setCateg(name);
   };
 

@@ -24,6 +24,7 @@ class Categories extends Component {
             category={category}
             active={this.props.categ === category.name}
             setCateg={this.props.setCateg}
+            sideDrawerClose={this.props.sideDrawerClose}
           />
         ))}
       </Container>

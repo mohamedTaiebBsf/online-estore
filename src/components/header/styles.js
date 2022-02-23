@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const Container = styled.header`
   padding: 0 6.25rem;
+
+  @media (max-width: 768px) {
+    padding: 0 3.125rem;
+  }
 `;
 
 const Wrapper = styled.div`
