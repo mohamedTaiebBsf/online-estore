@@ -3,6 +3,10 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 34.375rem) {
+    flex-direction: column;
+  }
 `;
 
 const Descriptions = styled.div`
@@ -26,10 +30,11 @@ const Price = styled.p`
 `;
 
 const Button = styled.button`
+  width: 100%;
   border: transparent;
   outline: none;
   background: var(--green);
-  padding: 1rem 5.8125rem;
+  padding: 1rem;
   transition: background 0.3s ease;
   font-weight: 600;
   color: var(--white);

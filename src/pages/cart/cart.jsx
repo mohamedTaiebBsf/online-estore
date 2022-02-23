@@ -34,7 +34,7 @@ class Cart extends Component {
       return (
         <React.Fragment>
           <CartProducts products={cartItems} isCart />
-          <Wrapper>
+          <Wrapper className="checkout">
             <TotalPrice>
               <Label>Total: </Label>
               <Price>{cartService.totalPrice(cartItems, currency)}</Price>

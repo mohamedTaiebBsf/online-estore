@@ -34,12 +34,22 @@ const Wrapper = styled.div`
     margin-top: 0;
     flex-direction: column;
   }
+
+  &.checkout {
+    @media (max-width: 28.125rem) {
+      flex-direction: column;
+    }
+  }
 `;
 
 const TotalPrice = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 28.125rem) {
+    align-self: start;
+  }
 `;
 
 const Label = styled.h3`
@@ -66,6 +76,18 @@ const Anchor = styled(Link)`
   &:hover {
     opacity: 0.8;
   }
+
+  &.shopping {
+    @media (max-width: 28.125rem) {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 28.125rem) {
+    width: 100%;
+    text-align: center;
+    margin-top: 2.25rem;
+  }
 `;
 
 const Image = styled.img`
@@ -75,6 +97,10 @@ const Image = styled.img`
 const Remark = styled.p`
   margin-bottom: 2rem;
   font-weight: 500;
+
+  @media (max-width: 28.125rem) {
+    text-align: center;
+  }
 `;
 
 const Button = styled.button`

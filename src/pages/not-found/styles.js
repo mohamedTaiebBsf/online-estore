@@ -25,7 +25,7 @@ const Title = styled.h1`
   font-weight: 700;
 
   @media (max-width: 31.25rem) {
-    font-size: 10rem;
+    font-size: 5rem;
   }
 `;
 
@@ -44,6 +44,10 @@ const Image = styled.img`
   width: 7.5rem;
   margin: 0 1.25rem;
   animation: ${spookyAnimation} 2s alternate infinite linear;
+
+  @media (max-width: 31.25rem) {
+    width: 3.125rem;
+  }
 `;
 
 const Error = styled.h2`
