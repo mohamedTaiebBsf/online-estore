@@ -24,7 +24,7 @@
 
 2. Clone or download this repository.
 
-3. It is **required** to Create `_.env_` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
+3. It is **required** to Create `.env` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
 
    ```sh
    REACT_APP_BACKEND_URL=http://localhost:4000
