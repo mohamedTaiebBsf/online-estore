@@ -2,6 +2,10 @@
 
 > <img src="https://media.cdn.teamtailor.com/images/s3/teamtailor-production/logotype-v1/image_uploads/bdfccb87-9d38-4234-be31-e3d209b9516b/original.png" alt="scandiweb" width="80" /> _React Assignment_ ✨✨✨
 
+## Demo
+
+https://scandiweb-online-estore.herokuapp.com
+
 ## Tech
 
 <div style="margin-bottom: 25px; display: flex; align-items:center;">
@@ -24,7 +28,7 @@
 
 2. Clone or download this repository.
 
-3. It is **required** to Create `_.env_` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
+3. It is **required** to Create `.env` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
 
    ```sh
    REACT_APP_BACKEND_URL=http://localhost:4000
