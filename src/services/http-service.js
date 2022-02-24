@@ -38,7 +38,7 @@ const ApolloError = storeConsumer(
       if (error.message.includes("400"))
         return `${ucFirst(name)} - Bad Request 400`;
 
-      return `Network is offline. Unable to fetch ${name.toUpperCase()}. Please, check your internet connection!`;
+      return `Backend is disconnected. Unable to fetch ${name.toUpperCase()}!`;
     };
 
     render() {

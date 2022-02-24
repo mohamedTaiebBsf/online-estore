@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import Product from "./product/product";
 import Attributes from "../attributes/attributes";
 import Modal from "../UI/modal/modal";
-import * as cartService from "../../services/cart-service";
+import AbstractCart from "../cart/abstract-cart/abstractCart";
 import { withProducts } from "../../services/http-service";
 import { storeConsumer } from "../../store";
-import { copy, isEmpty, findById } from "../../utils";
 import { Container, ModalTitle, ModalActions, ModalButton } from "./styles";
 
-class Products extends Component {
+class Products extends AbstractCart {
   state = {
     openModal: false,
     productToAdd: null,
@@ -44,55 +43,6 @@ class Products extends Component {
       openModal: true,
       productToAdd: product,
     });
-  };
-
-  selectOption = (attrId, itemId) => {
-    const newOption = {
-      id: attrId,
-      selectItem: itemId,
-    };
-
-    if (isEmpty(this.props.options)) {
-      return this.props.addOption(newOption);
-    }
-
-    const option = findById(this.props.options, attrId);
-
-    if (option) {
-      return this.props.updateOption(newOption);
-    }
-
-    this.props.addOption(newOption);
-  };
-
-  addToCart = (product) => {
-    const item = copy(product);
-    const cart = copy(this.props.cartItems);
-
-    if (cartService.has(cart, item)) {
-      this.props.toast("warning", `${item.name} added again`);
-      return this.props.increaseQty(item.id);
-    }
-
-    const itemToAdd = cartService.customizeItem(item);
-
-    if (isEmpty(item.attributes)) {
-      this.props.toast("success", `${item.name} added to the Cart!`);
-      return this.props.addToCart(itemToAdd);
-    }
-
-    if (!this.state.openModal) {
-      return this.openModal(item);
-    }
-
-    if (isEmpty(this.props.options)) {
-      return;
-    }
-
-    itemToAdd.selectedOptions = this.props.options;
-    this.props.addToCart(itemToAdd);
-    this.closeModal();
-    this.props.toast("success", `${item.name} added to the Cart!`);
   };
 
   render() {

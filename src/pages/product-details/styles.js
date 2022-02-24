@@ -41,6 +41,19 @@ const Button = styled.button`
   cursor: pointer;
   margin: 1.5625rem 0;
 
+  &:disabled,
+  &[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover,
+  &[disabled]:hover {
+    background-color: #cccccc;
+  }
+
   &:hover {
     background: rgba(94, 206, 123, 0.8);
   }
