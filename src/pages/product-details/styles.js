@@ -21,7 +21,13 @@ const Brand = styled.h3`
 
 const Name = styled.p`
   font-size: 1.875rem;
+  margin-bottom: 1.25rem;
+`;
+
+const Stock = styled.p`
+  color: #dc3545;
   margin-bottom: 2.6875rem;
+  font-weight: 700;
 `;
 
 const Price = styled.p`
@@ -72,4 +78,14 @@ const SubTitle = styled.h4`
   margin-bottom: 0.625rem;
 `;
 
-export { Container, Descriptions, Brand, Name, Price, Button, Text, SubTitle };
+export {
+  Container,
+  Descriptions,
+  Brand,
+  Name,
+  Price,
+  Button,
+  Text,
+  SubTitle,
+  Stock,
+};

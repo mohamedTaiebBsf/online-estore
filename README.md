@@ -76,6 +76,8 @@ https://scandiweb-online-estore.herokuapp.com
 
 - If the product is already in the cart, you can view that the selected attributes are highlighted and you cannot change them. Otherwise, you are able to select your preferred options and add the product to the cart.
 
+- If the product is out of stock, you can neither select options nor add it to the cart.
+
 **Cart page & mini cart**
 
 - You can show the mini-cart by clicking ont the shopping cart icon in the header.
