@@ -16,6 +16,7 @@ import {
   Price,
   Button,
   Text,
+  Stock,
 } from "./styles";
 
 class ProductDetails extends AbstractCart {
@@ -54,7 +55,10 @@ class ProductDetails extends AbstractCart {
   };
 
   chooseOption = (attrId, itemId) => {
+    const { product } = this.props.data;
+
     if (!isEmpty(this.getSelectedOptionsFromCart())) return false;
+    if (!product.inStock) return false;
 
     this.selectOption(attrId, itemId);
   };
@@ -69,6 +73,7 @@ class ProductDetails extends AbstractCart {
           <Descriptions>
             <Brand>{product.brand}</Brand>
             <Name>{product.name}</Name>
+            {!product.inStock && <Stock>Out Of Stock</Stock>}
             <Attributes
               select={this.chooseOption}
               attributes={product.attributes}

@@ -28,7 +28,7 @@ https://scandiweb-online-estore.herokuapp.com
 
 2. Clone or download this repository.
 
-3. It is **required** to Create `.env` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
+3. **Before starting the app**, It is **required** to Create `.env` file and set `REACT_APP_BACKEND_URL` environment variable to http://localhost:4000.
 
    ```sh
    REACT_APP_BACKEND_URL=http://localhost:4000
@@ -43,6 +43,8 @@ https://scandiweb-online-estore.herokuapp.com
 
 5. Navigate to http://localhost:3000 in
    your preferred browser and enjoy! 👋
+
+> 👀 If you create .env after launching the app, you should stop the app and re-start it again!
 
 ## _Overview_
 
@@ -75,6 +77,8 @@ https://scandiweb-online-estore.herokuapp.com
 - You are able to add this product to the cart.
 
 - If the product is already in the cart, you can view that the selected attributes are highlighted and you cannot change them. Otherwise, you are able to select your preferred options and add the product to the cart.
+
+- If the product is out of stock, you can neither select options nor add it to the cart.
 
 **Cart page & mini cart**
 
