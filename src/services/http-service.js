@@ -12,7 +12,7 @@ import { storeConsumer } from "../store";
 import { ucFirst } from "../utils";
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_BACKEND_URL,
+  uri: process.env.REACT_APP_BACKEND_URL || "http://localhost:4000",
   cache: new InMemoryCache({ addTypename: false }),
 });
 
