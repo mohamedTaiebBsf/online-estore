@@ -1,3 +1,5 @@
+import parseHtml from "./htmlSanitizer";
+
 const omit = (obj, keys) => {
   const keysToRemove = new Set(keys);
 
@@ -100,4 +102,5 @@ export {
   unserialize,
   uuid,
   ucFirst,
+  parseHtml,
 };

@@ -6,7 +6,7 @@ import AbstractCart from "../../components/cart/abstract-cart/abstractCart";
 import * as productService from "../../services/product-service";
 import { withProductDetails } from "../../services/http-service";
 import { storeConsumer } from "../../store";
-import { findById, isEmpty } from "../../utils";
+import { findById, isEmpty, parseHtml } from "../../utils";
 import {
   Container,
   Descriptions,
@@ -20,6 +20,8 @@ import {
 } from "./styles";
 
 class ProductDetails extends AbstractCart {
+  descriptionRef = React.createRef();
+
   shouldComponentUpdate(nextProps, nextState) {
     const { currency, options, cartItems } = this.props;
 
@@ -93,7 +95,7 @@ class ProductDetails extends AbstractCart {
             >
               Add To Cart
             </Button>
-            <Text dangerouslySetInnerHTML={{ __html: product.description }} />
+            <Text ref={this.descriptionRef} />
           </Descriptions>
         </Container>
       </Layout>
@@ -102,6 +104,12 @@ class ProductDetails extends AbstractCart {
 
   componentWillUnmount() {
     this.props.clearOptions();
+  }
+
+  componentDidMount() {
+    const { product } = this.props.data;
+
+    this.descriptionRef.current.innerHTML = parseHtml(product.description);
   }
 }
 
