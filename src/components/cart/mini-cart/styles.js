@@ -7,7 +7,7 @@ const Container = styled.div`
   top: 20%;
   right: 0;
   padding: 1rem;
-  z-index: 6;
+  z-index: 11;
   visibility: hidden;
   opacity: 0;
   transition: all 0.4s ease-in-out;

@@ -7,7 +7,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   background: var(--backdrop);
-  z-index: 5;
+  z-index: 10;
 `;
 
 export default Container;

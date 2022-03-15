@@ -73,7 +73,7 @@ const BigImageWrapper = styled.div`
 
 const BigImage = styled.img`
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
 `;
 
 export {
