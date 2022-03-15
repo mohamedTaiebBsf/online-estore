@@ -11,11 +11,10 @@ class Backdrop extends Component {
   }
 
   render() {
-    const styles = this.props.styles ? this.props.styles : null;
+    const { show, clicked, styles: bdStyles } = this.props;
+    const styles = bdStyles ? bdStyles : null;
 
-    return this.props.show ? (
-      <Container style={styles} onClick={this.props.clicked} />
-    ) : null;
+    return show ? <Container style={styles} onClick={clicked} /> : null;
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Layout from "../layout/layout";
 import Products from "../../components/products/products";
 import { storeConsumer } from "../../store";
+import Layout from "../layout/layout";
 import { Title } from "./styles";
 
 class Home extends Component {

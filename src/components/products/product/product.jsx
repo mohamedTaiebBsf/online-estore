@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import * as productService from "../../../services/product-service";
 import { isEmpty } from "../../../utils";
 import {
-  Container,
-  Wrapper,
-  ImageContainer,
-  Image,
-  Title,
-  Price,
+  Anchor,
   CartContainer,
   CartIcon,
+  Container,
+  Image,
+  ImageContainer,
   Notif,
-  Anchor,
+  Price,
+  Title,
+  Wrapper,
 } from "./styles";
 
 class Product extends Component {
@@ -27,8 +27,8 @@ class Product extends Component {
     return false;
   }
   render() {
-    const { gallery, brand, name, inStock, id, prices } = this.props.product;
-    const { add, currentCurrency } = this.props;
+    const { product, add, currentCurrency } = this.props;
+    const { gallery, brand, name, inStock, id, prices } = product;
 
     return (
       <React.Fragment>

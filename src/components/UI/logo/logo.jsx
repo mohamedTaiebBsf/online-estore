@@ -4,8 +4,10 @@ import Image from "./styles";
 
 class Logo extends Component {
   render() {
+    const { onClick } = this.props;
+
     return (
-      <Link to="/" onClick={this.props.onClick}>
+      <Link to="/" onClick={onClick}>
         <Image src="/assets/images/app-logo.svg" alt="logo" />
       </Link>
     );

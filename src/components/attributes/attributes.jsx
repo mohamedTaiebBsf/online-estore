@@ -17,16 +17,18 @@ class Attributes extends Component {
   }
 
   render() {
+    const { isCart, attributes, select, selectedOptions } = this.props;
+
     return (
-      <Container $isCart={this.props.isCart}>
-        {!isEmpty(this.props.attributes) &&
-          this.props.attributes.map((attribute) => (
+      <Container $isCart={isCart}>
+        {!isEmpty(attributes) &&
+          attributes.map((attribute) => (
             <Attribute
               key={attribute.id}
               attribute={attribute}
-              select={this.props.select}
-              selectedOptions={this.props.selectedOptions}
-              isCart={this.props.isCart}
+              select={select}
+              selectedOptions={selectedOptions}
+              isCart={isCart}
             />
           ))}
       </Container>

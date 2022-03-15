@@ -1,11 +1,11 @@
 import React from "react";
-import Product from "./product/product";
-import Attributes from "../attributes/attributes";
-import Modal from "../UI/modal/modal";
-import AbstractCart from "../cart/abstract-cart/abstractCart";
 import { withProducts } from "../../services/http-service";
 import { storeConsumer } from "../../store";
-import { Container, ModalTitle, ModalActions, ModalButton } from "./styles";
+import Attributes from "../attributes/attributes";
+import AbstractCart from "../cart/abstract-cart/abstractCart";
+import Modal from "../UI/modal/modal";
+import Product from "./product/product";
+import { Container, ModalActions, ModalButton, ModalTitle } from "./styles";
 
 class Products extends AbstractCart {
   state = {
@@ -31,7 +31,10 @@ class Products extends AbstractCart {
   }
 
   closeModal = () => {
-    this.props.clearOptions();
+    const { clearOptions } = this.props;
+
+    clearOptions();
+
     this.setState({
       openModal: false,
       productToAdd: null,
@@ -46,8 +49,9 @@ class Products extends AbstractCart {
   };
 
   render() {
-    const { products } = this.props.data.category;
-    const { productToAdd } = this.state;
+    const { data, currency, options } = this.props;
+    const { products } = data.category;
+    const { productToAdd, openModal } = this.state;
 
     return (
       <Container>
@@ -55,24 +59,24 @@ class Products extends AbstractCart {
           <Product
             key={product.id}
             product={product}
-            currentCurrency={this.props.currency}
+            currentCurrency={currency}
             add={() => this.addToCart(product)}
           />
         ))}
-        <Modal show={this.state.openModal} modalClosed={this.closeModal}>
+        <Modal show={openModal} modalClosed={this.closeModal}>
           <ModalTitle>Choose your favourite options</ModalTitle>
           <Attributes
             select={this.selectOption}
             attributes={productToAdd ? productToAdd.attributes : []}
-            selectedOptions={this.props.options}
+            selectedOptions={options}
           />
           <ModalActions>
             <ModalButton onClick={this.closeModal}>Decline</ModalButton>
             <ModalButton
-              onClick={() => this.addToCart(this.state.productToAdd)}
+              onClick={() => this.addToCart(productToAdd)}
               disabled={
                 productToAdd
-                  ? productToAdd.attributes.length !== this.props.options.length
+                  ? productToAdd.attributes.length !== options.length
                   : true
               }
             >
@@ -88,10 +92,10 @@ class Products extends AbstractCart {
 export default storeConsumer(
   withProducts(Products, {
     name: "products",
-    callback: (props) => {
+    callback: ({ categ }) => {
       return {
         variables: {
-          categoryName: props.categ,
+          categoryName: categ,
         },
       };
     },

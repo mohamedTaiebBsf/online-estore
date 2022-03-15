@@ -3,13 +3,11 @@ import { Container } from "./styles";
 
 class Item extends Component {
   render() {
+    const { select, selected, isColor, children } = this.props;
+
     return (
-      <Container
-        onClick={this.props.select}
-        $selected={this.props.selected}
-        $isColor={this.props.isColor}
-      >
-        {this.props.children}
+      <Container onClick={select} $selected={selected} $isColor={isColor}>
+        {children}
       </Container>
     );
   }

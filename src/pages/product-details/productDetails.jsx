@@ -1,22 +1,22 @@
 import React from "react";
-import Layout from "../layout/layout";
 import Attributes from "../../components/attributes/attributes";
-import ProductImages from "../../components/product-images/productImages";
 import AbstractCart from "../../components/cart/abstract-cart/abstractCart";
-import * as productService from "../../services/product-service";
+import ProductImages from "../../components/product-images/productImages";
 import { withProductDetails } from "../../services/http-service";
+import * as productService from "../../services/product-service";
 import { storeConsumer } from "../../store";
 import { findById, isEmpty, parseHtml } from "../../utils";
+import Layout from "../layout/layout";
 import {
+  Brand,
+  Button,
   Container,
   Descriptions,
-  Brand,
   Name,
-  SubTitle,
   Price,
-  Button,
-  Text,
   Stock,
+  SubTitle,
+  Text,
 } from "./styles";
 
 class ProductDetails extends AbstractCart {
@@ -36,8 +36,9 @@ class ProductDetails extends AbstractCart {
   }
 
   getSelectedOptionsFromCart = () => {
-    const productId = this.props.match.params.id;
-    const product = findById(this.props.cartItems, productId);
+    const { match, cartItems } = this.props;
+    const productId = match.params.id;
+    const product = findById(cartItems, productId);
 
     if (product && !isEmpty(product.selectedOptions)) {
       return product.selectedOptions;
@@ -48,8 +49,8 @@ class ProductDetails extends AbstractCart {
 
   isDisabled = () => {
     const selectedOptions = this.getSelectedOptionsFromCart();
-    const { product } = this.props.data;
-    const { options } = this.props;
+    const { data, options } = this.props;
+    const { product } = data;
 
     if (!isEmpty(selectedOptions)) return false;
 
@@ -66,7 +67,8 @@ class ProductDetails extends AbstractCart {
   };
 
   render() {
-    const { product } = this.props.data;
+    const { data, options, currency } = this.props;
+    const { product } = data;
 
     return (
       <Layout>
@@ -80,15 +82,11 @@ class ProductDetails extends AbstractCart {
               select={this.chooseOption}
               attributes={product.attributes}
               selectedOptions={
-                !isEmpty(this.props.options)
-                  ? this.props.options
-                  : this.getSelectedOptionsFromCart()
+                !isEmpty(options) ? options : this.getSelectedOptionsFromCart()
               }
             />
             <SubTitle>Price: </SubTitle>
-            <Price>
-              {productService.price(product.prices, this.props.currency)}
-            </Price>
+            <Price>{productService.price(product.prices, currency)}</Price>
             <Button
               onClick={() => this.addToCart(product, "product-details")}
               disabled={this.isDisabled()}
@@ -116,10 +114,10 @@ class ProductDetails extends AbstractCart {
 export default storeConsumer(
   withProductDetails(ProductDetails, {
     name: "product details",
-    callback: (props) => {
+    callback: ({ match }) => {
       return {
         variables: {
-          id: props.match.params.id,
+          id: match.params.id,
         },
       };
     },

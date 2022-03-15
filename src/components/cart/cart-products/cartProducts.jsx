@@ -4,14 +4,12 @@ import { Container } from "./styles";
 
 class CartProducts extends Component {
   render() {
+    const { products, isCart } = this.props;
+
     return (
       <Container>
-        {this.props.products.map((product) => (
-          <CartProduct
-            key={product.id}
-            product={product}
-            isCart={this.props.isCart}
-          />
+        {products.map((product) => (
+          <CartProduct key={product.id} product={product} isCart={isCart} />
         ))}
       </Container>
     );

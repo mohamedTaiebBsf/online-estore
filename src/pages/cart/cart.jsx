@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import Layout from "../layout/layout";
 import CartProducts from "../../components/cart/cart-products/cartProducts";
 import * as cartService from "../../services/cart-service";
 import { storeConsumer } from "../../store";
 import { isEmpty } from "../../utils";
+import Layout from "../layout/layout";
 import {
-  Title,
-  Wrapper,
-  TotalPrice,
+  Anchor,
+  Button,
+  Image,
   Label,
   Price,
-  Anchor,
-  Image,
   Remark,
-  Button,
+  Title,
+  TotalPrice,
   TrashIcon,
+  Wrapper,
 } from "./styles";
 
 class Cart extends Component {
@@ -58,14 +58,14 @@ class Cart extends Component {
   };
 
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, clearCart } = this.props;
 
     return (
       <Layout>
         <Wrapper className="title-wrapper">
           <Title>Cart</Title>
           {!isEmpty(cartItems) && (
-            <Button onClick={this.props.clearCart}>
+            <Button onClick={clearCart}>
               Clear
               <TrashIcon src="/assets/images/trash-icon.svg" alt="trash" />
             </Button>

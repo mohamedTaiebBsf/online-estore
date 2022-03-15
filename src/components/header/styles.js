@@ -64,7 +64,7 @@ const CurrencySymbol = styled.span`
 const Arrow = styled.img`
   width: 0.625rem;
   margin-left: 0.5rem;
-  transform: ${(props) => (props.$show ? "rotate(180deg)" : "none")};
+  transform: ${({ $show }) => ($show ? "rotate(180deg)" : "none")};
 `;
 
 export {

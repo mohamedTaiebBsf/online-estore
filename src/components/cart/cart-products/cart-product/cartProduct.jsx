@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import Attributes from "../../../attributes/attributes";
-import { storeConsumer } from "../../../../store";
 import * as productService from "../../../../services/product-service";
+import { storeConsumer } from "../../../../store";
+import Attributes from "../../../attributes/attributes";
 import {
-  Container,
-  Column,
+  Actions,
   Brand,
+  Button,
+  Column,
+  Container,
+  Image,
+  ImageWrapper,
   Name,
   Price,
-  ImageWrapper,
-  Image,
-  Actions,
   Quantity,
-  Button,
   TrashIcon,
 } from "./styles";
 
@@ -31,6 +31,15 @@ class CartProduct extends Component {
 
   render() {
     const {
+      isCart,
+      product,
+      currency,
+      removeFromCart,
+      increaseQty,
+      decreaseQty,
+    } = this.props;
+
+    const {
       id,
       name,
       brand,
@@ -39,19 +48,19 @@ class CartProduct extends Component {
       quantity,
       attributes,
       selectedOptions,
-    } = this.props.product;
+    } = product;
 
     return (
-      <Container $isCart={this.props.isCart}>
+      <Container $isCart={isCart}>
         <TrashIcon
-          onClick={() => this.props.removeFromCart(id)}
+          onClick={() => removeFromCart(id)}
           src="/assets/images/trash-icon.svg"
           alt="trash"
         />
         <Column>
           <Brand>{brand}</Brand>
           <Name>{name}</Name>
-          <Price>{productService.price(prices, this.props.currency)}</Price>
+          <Price>{productService.price(prices, currency)}</Price>
           <Attributes
             attributes={attributes}
             selectedOptions={selectedOptions}
@@ -60,9 +69,9 @@ class CartProduct extends Component {
         </Column>
         <Column>
           <Actions>
-            <Button onClick={() => this.props.increaseQty(id)}>+</Button>
+            <Button onClick={() => increaseQty(id)}>+</Button>
             <Quantity>{quantity}</Quantity>
-            <Button onClick={() => this.props.decreaseQty(id)}>-</Button>
+            <Button onClick={() => decreaseQty(id)}>-</Button>
           </Actions>
           <ImageWrapper>
             <Image src={image} />

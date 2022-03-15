@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import rootReducer from "./reducers";
-import * as persistor from "./state-persistor";
-import { mapStateToProps, mapDispatchToProps } from "./state-mappers";
+import { connect, Provider } from "react-redux";
 import { createStore } from "redux";
-import { Provider, connect } from "react-redux";
+import rootReducer from "./reducers";
+import { mapDispatchToProps, mapStateToProps } from "./state-mappers";
+import * as persistor from "./state-persistor";
 
 const DevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -12,11 +12,12 @@ const store = createStore(rootReducer, persistor.load(), DevTools);
 
 store.subscribe(() => {
   const state = store.getState();
+  const { cart, categ, curr } = state;
 
   persistor.save({
-    cart: { cartProducts: state.cart.cartProducts },
-    categ: { selectedCategory: state.categ.selectedCategory },
-    curr: { currentCurrency: state.curr.currentCurrency },
+    cart: { cartProducts: cart.cartProducts },
+    categ: { selectedCategory: categ.selectedCategory },
+    curr: { currentCurrency: curr.currentCurrency },
   });
 });
 

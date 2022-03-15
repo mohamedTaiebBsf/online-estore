@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
-  Container,
-  Wrapper,
-  Title,
-  Image,
-  Error,
-  Description,
   Anchor,
+  Container,
+  Description,
+  Error,
+  Image,
+  Title,
+  Wrapper,
 } from "./styles";
 
 class NotFound extends Component {

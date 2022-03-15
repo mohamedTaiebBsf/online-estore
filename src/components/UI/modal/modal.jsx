@@ -12,14 +12,16 @@ class Modal extends Component {
   }
 
   render() {
+    const { show, children, modalClosed } = this.props;
+
     return (
       <React.Fragment>
         <Backdrop
           styles={{ position: "fixed", zIndex: 99 }}
-          show={this.props.show}
-          clicked={this.props.modalClosed}
+          show={show}
+          clicked={modalClosed}
         />
-        <Container $show={this.props.show}>{this.props.children}</Container>
+        <Container $show={show}>{children}</Container>
       </React.Fragment>
     );
   }

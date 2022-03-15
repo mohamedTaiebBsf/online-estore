@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import routes from "../config/routes";
+import { Route, Switch } from "react-router-dom";
 import ToastContainer from "../components/toastify/toastContainer";
-import { Switch, Route } from "react-router-dom";
+import routes from "../config/routes";
 import { HttpProvider } from "../services/http-service";
 import { StoreProvider } from "../store";
 import "./app.css";

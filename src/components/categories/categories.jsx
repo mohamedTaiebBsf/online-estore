@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Category from "./category/category";
 import { withCategories } from "../../services/http-service";
 import { storeConsumer } from "../../store";
+import Category from "./category/category";
 import { Container } from "./styles";
 
 class Categories extends Component {
@@ -14,7 +14,8 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories } = this.props.data;
+    const { data, categ, setCateg, sideDrawerClose } = this.props;
+    const { categories } = data;
 
     return (
       <Container>
@@ -22,9 +23,9 @@ class Categories extends Component {
           <Category
             key={index}
             category={category}
-            active={this.props.categ === category.name}
-            setCateg={this.props.setCateg}
-            sideDrawerClose={this.props.sideDrawerClose}
+            active={categ === category.name}
+            setCateg={setCateg}
+            sideDrawerClose={sideDrawerClose}
           />
         ))}
       </Container>

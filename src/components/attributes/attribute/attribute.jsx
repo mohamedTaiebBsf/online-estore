@@ -5,21 +5,19 @@ import { Container, Title } from "./styles";
 class Attribute extends Component {
   render() {
     const { name, items, id } = this.props.attribute;
+    const { isCart, select, selectedOptions } = this.props;
     const isColor = name.toLowerCase() === "color";
 
     return (
-      <Container
-        className={this.props.isCart && "options-in-cart"}
-        $isColor={isColor}
-      >
+      <Container className={isCart && "options-in-cart"} $isColor={isColor}>
         <Title>{name}: </Title>
         <Items
           items={items}
           isColor={isColor}
-          select={this.props.select}
-          selectedOptions={this.props.selectedOptions || []}
+          select={select}
+          selectedOptions={selectedOptions || []}
           attributeId={id}
-          isCart={this.props.isCart}
+          isCart={isCart}
         />
       </Container>
     );

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Container, Bar } from "./styles";
+import { Bar, Container } from "./styles";
 
 class SideToggle extends Component {
   render() {
+    const { open, toggleSide } = this.props;
+
     return (
-      <Container
-        onClick={this.props.toggleSide}
-        className={this.props.open && "open"}
-      >
+      <Container onClick={toggleSide} className={open && "open"}>
         <Bar />
       </Container>
     );

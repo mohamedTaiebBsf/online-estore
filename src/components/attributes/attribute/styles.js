@@ -14,8 +14,8 @@ const Container = styled.div`
     }
 
     & > div > div {
-      padding: ${(props) =>
-        !props.$isColor ? "0.3rem 0.5rem" : "0.875rem 1rem"};
+      padding: ${({ $isColor }) =>
+        !$isColor ? "0.3rem 0.5rem" : "0.875rem 1rem"};
       };
 
       cursor: default;

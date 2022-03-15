@@ -17,13 +17,13 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5625rem;
-  border-bottom: ${(props) =>
-    props.$isCart ? "1px solid var(--gray)" : "none"};
-  padding-bottom: ${(props) => (props.$isCart ? "1.5625rem" : "0rem")};
+  border-bottom: ${({ $isCart }) =>
+    $isCart ? "1px solid var(--gray)" : "none"};
+  padding-bottom: ${({ $isCart }) => ($isCart ? "1.5625rem" : "0rem")};
   position: relative;
 
   & ${TrashIcon} {
-    top: ${(props) => (props.$isCart ? "1.25rem" : "0rem")};
+    top: ${({ $isCart }) => ($isCart ? "1.25rem" : "0rem")};
   }
 
   &:hover ${TrashIcon} {
@@ -32,10 +32,10 @@ const Container = styled.div`
   }
 
   &:first-child {
-    border-top: ${(props) =>
-      props.$isCart ? "1px solid var(--gray)" : "none"};
+    border-top: ${({ $isCart }) =>
+      $isCart ? "1px solid var(--gray)" : "none"};
 
-    padding-top: ${(props) => (props.$isCart ? "1.5625rem" : "0rem")};
+    padding-top: ${({ $isCart }) => ($isCart ? "1.5625rem" : "0rem")};
   }
 
   &:last-child {

@@ -3,15 +3,15 @@ import { Container, Text } from "./styles";
 
 class Currency extends Component {
   render() {
-    const { symbol, label } = this.props.currency;
+    const { currency, switch: switchCurr, active } = this.props;
 
     return (
       <Container
-        onClick={() => this.props.switch(symbol)}
-        className={this.props.active && "active"}
+        onClick={() => switchCurr(currency.symbol)}
+        className={active && "active"}
       >
-        <Text>{symbol}</Text>
-        <Text>{label}</Text>
+        <Text>{currency.symbol}</Text>
+        <Text>{currency.label}</Text>
       </Container>
     );
   }

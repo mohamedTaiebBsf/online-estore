@@ -4,41 +4,45 @@ import { copy, findById, isEmpty } from "../../../utils";
 
 class AbstractCart extends Component {
   selectOption = (attrId, itemId) => {
+    const { options, addOption, updateOption } = this.props;
+
     const newOption = {
       id: attrId,
       selectItem: itemId,
     };
 
-    if (isEmpty(this.props.options)) {
-      return this.props.addOption(newOption);
+    if (isEmpty(options)) {
+      return addOption(newOption);
     }
 
-    const option = findById(this.props.options, attrId);
+    const option = findById(options, attrId);
 
     if (option) {
-      return this.props.updateOption(newOption);
+      return updateOption(newOption);
     }
 
-    this.props.addOption(newOption);
+    addOption(newOption);
   };
 
   addToCart = (product, belongTo = "products") => {
+    const { cartItems, toast, increaseQty, addToCart, clearOptions, options } =
+      this.props;
     const item = copy(product);
-    const cart = copy(this.props.cartItems);
+    const cart = copy(cartItems);
 
     if (cartService.has(cart, item)) {
-      this.props.toast("warning", `${item.name} added again`);
-      return this.props.increaseQty(item.id);
+      toast("warning", `${item.name} added again`);
+      return increaseQty(item.id);
     }
 
     const itemToAdd = cartService.customizeItem(item);
 
     if (isEmpty(item.attributes)) {
       itemToAdd.selectedOptions = [];
-      this.props.toast("success", `${item.name} added to the Cart!`);
-      this.props.addToCart(itemToAdd);
+      toast("success", `${item.name} added to the Cart!`);
+      addToCart(itemToAdd);
       if (belongTo === "product-details") {
-        this.props.clearOptions();
+        clearOptions();
       }
       return;
     }
@@ -49,19 +53,22 @@ class AbstractCart extends Component {
       }
     }
 
-    if (isEmpty(this.props.options)) {
+    if (isEmpty(options)) {
       return;
     }
 
-    itemToAdd.selectedOptions = this.props.options;
-    this.props.addToCart(itemToAdd);
+    itemToAdd.selectedOptions = options;
+    addToCart(itemToAdd);
+
     if (belongTo === "products") {
       this.closeModal();
     }
+
     if (belongTo === "product-details") {
-      this.props.clearOptions();
+      clearOptions();
     }
-    this.props.toast("success", `${item.name} added to the Cart!`);
+
+    toast("success", `${item.name} added to the Cart!`);
   };
 }
 

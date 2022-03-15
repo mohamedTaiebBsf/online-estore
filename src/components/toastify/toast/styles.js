@@ -33,19 +33,19 @@ const Container = styled.div`
   box-sizing: border-box;
   overflow: hidden;
   transition: all 0.4 ease;
-  -webkit-animation: ${(props) =>
-      props.$exited ? slideRightAnimation : slideLeftAnimation}
+  -webkit-animation: ${({ $exited }) =>
+      $exited ? slideRightAnimation : slideLeftAnimation}
     0.5s forwards;
-  animation: ${(props) =>
-      props.$exited ? slideRightAnimation : slideLeftAnimation}
+  animation: ${({ $exited }) =>
+      $exited ? slideRightAnimation : slideLeftAnimation}
     0.5s forwards;
 
   &:hover {
     box-shadow: 0px 0px 3px var(--gray);
   }
 
-  background: ${(props) => {
-    switch (props.$mode) {
+  background: ${({ $mode }) => {
+    switch ($mode) {
       case "success":
         return "#28a745";
       case "warning":

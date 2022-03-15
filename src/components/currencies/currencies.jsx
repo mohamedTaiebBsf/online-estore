@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Currency from "./currency/currency";
 import { withCurrencies } from "../../services/http-service";
 import { storeConsumer } from "../../store";
+import Currency from "./currency/currency";
 import { Container, spinnerStyles } from "./styles";
 
 class Currencies extends Component {
@@ -18,16 +18,17 @@ class Currencies extends Component {
   }
 
   render() {
-    const { currencies } = this.props.data;
+    const { data, currency: curr, showCurrency, switchCurr } = this.props;
+    const { currencies } = data;
 
     return (
-      <Container className={this.props.showCurrency && "open"}>
+      <Container className={showCurrency && "open"}>
         {currencies.map((currency) => (
           <Currency
             key={currency.label}
             currency={currency}
-            switch={this.props.switchCurr}
-            active={this.props.currency === currency.symbol}
+            switch={switchCurr}
+            active={curr === currency.symbol}
           />
         ))}
       </Container>

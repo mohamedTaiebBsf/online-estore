@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-import { Container, Anchor } from "./styles";
+import { Anchor, Container } from "./styles";
 
 class Category extends Component {
   categClicked = () => {
-    const { name } = this.props.category;
+    const { category, sideDrawerClose, setCateg } = this.props;
 
-    if (this.props.sideDrawerClose) {
-      this.props.sideDrawerClose();
+    if (sideDrawerClose) {
+      sideDrawerClose();
     }
 
-    this.props.setCateg(name);
+    setCateg(category.name);
   };
 
   render() {
-    const { name } = this.props.category;
+    const { category, active } = this.props;
 
     return (
-      <Container
-        className={this.props.active && "active"}
-        onClick={this.categClicked}
-      >
-        <Anchor to={`/?${name}`}>{name}</Anchor>
+      <Container className={active && "active"} onClick={this.categClicked}>
+        <Anchor to={`/?${category.name}`}>{category.name}</Anchor>
       </Container>
     );
   }

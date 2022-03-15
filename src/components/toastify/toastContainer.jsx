@@ -1,9 +1,9 @@
-import ReactDOM from "react-dom";
 import { Component } from "react";
-import Toast from "./toast/toast";
+import ReactDOM from "react-dom";
 import { storeConsumer } from "../../store";
 import { uuid } from "../../utils";
 import { Container, toastParentStyle } from "./styles";
+import Toast from "./toast/toast";
 
 class ToastContainer extends Component {
   state = {
@@ -22,7 +22,7 @@ class ToastContainer extends Component {
 
   render() {
     const { loaded, containerId } = this.state;
-    const { toasts } = this.props;
+    const { toasts, removeToast } = this.props;
 
     return loaded
       ? ReactDOM.createPortal(
@@ -32,7 +32,7 @@ class ToastContainer extends Component {
                 key={t.id}
                 mode={t.mode}
                 message={t.message}
-                onClose={() => this.props.removeToast(t.id)}
+                onClose={() => removeToast(t.id)}
               />
             ))}
           </Container>,
@@ -42,7 +42,9 @@ class ToastContainer extends Component {
   }
 
   componentWillUnmount() {
-    document.body.removeChild(document.getElementById(this.state.containerId));
+    const { containerId } = this.state;
+
+    document.body.removeChild(document.getElementById(containerId));
   }
 
   componentDidMount() {

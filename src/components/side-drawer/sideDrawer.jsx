@@ -6,14 +6,16 @@ import { Container, LogoWrapper } from "./styles";
 
 class SideDrawer extends Component {
   render() {
+    const { open, onClose } = this.props;
+
     return (
       <React.Fragment>
-        <Backdrop show={this.props.open} clicked={this.props.onClose} />
-        <Container className={this.props.open && "open"}>
+        <Backdrop show={open} clicked={onClose} />
+        <Container className={open && "open"}>
           <LogoWrapper>
             <Logo />
           </LogoWrapper>
-          <Categories sideDrawerClose={this.props.onClose} />
+          <Categories sideDrawerClose={onClose} />
         </Container>
       </React.Fragment>
     );

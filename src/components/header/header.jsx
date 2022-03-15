@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import Categories from "../categories/categories";
-import Currencies from "../currencies/currencies";
-import MiniCart from "../cart/mini-cart/miniCart";
-import Logo from "../UI/logo/logo";
 import * as cartService from "../../services/cart-service";
 import { storeConsumer } from "../../store";
 import { isEmpty } from "../../utils";
+import MiniCart from "../cart/mini-cart/miniCart";
+import Categories from "../categories/categories";
+import Currencies from "../currencies/currencies";
+import SideToggle from "../side-drawer/side-toggle/sideToggle";
+import Logo from "../UI/logo/logo";
 import {
-  Container,
-  Wrapper,
+  Arrow,
+  CartBadge,
   CartContainer,
   CartIcon,
-  CartBadge,
+  Container,
   CurrencySymbol,
-  Arrow,
   LogoWrapper,
+  Wrapper,
 } from "./styles";
-import SideToggle from "../side-drawer/side-toggle/sideToggle";
 
 class Header extends Component {
   state = {
@@ -34,23 +34,23 @@ class Header extends Component {
   };
 
   toggleCurrency = () => {
-    const { showMiniCart } = this.props;
+    const { showMiniCart, closeMiniCart, toggleCurr } = this.props;
 
     if (showMiniCart) {
-      this.props.closeMiniCart();
+      closeMiniCart();
     }
 
-    this.props.toggleCurr();
+    toggleCurr();
   };
 
   toggleMiniCart = () => {
-    const { showCurrency } = this.props;
+    const { showCurrency, closeCurr, toggleMiniCart } = this.props;
 
     if (showCurrency) {
-      this.props.closeCurr();
+      closeCurr();
     }
 
-    this.props.toggleMiniCart();
+    toggleMiniCart();
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -70,32 +70,37 @@ class Header extends Component {
   }
 
   render() {
+    const {
+      onSideDrawerClick,
+      openSideDrawer,
+      browserSize,
+      setCateg,
+      currency,
+      showCurrency,
+      cartItems,
+    } = this.props;
+
     return (
       <Container>
         <Wrapper>
-          <SideToggle
-            toggleSide={this.props.onSideDrawerClick}
-            open={this.props.openSideDrawer}
-          />
-          {this.props.browserSize > 550 && <Categories />}
+          <SideToggle toggleSide={onSideDrawerClick} open={openSideDrawer} />
+          {browserSize > 550 && <Categories />}
           <LogoWrapper>
-            <Logo onClick={() => this.props.setCateg("all")} />
+            <Logo onClick={() => setCateg("all")} />
           </LogoWrapper>
           <Wrapper>
             <CurrencySymbol onClick={this.toggleCurrency}>
-              {this.props.currency}
+              {currency}
               <Arrow
                 src="/assets/images/arrow.svg"
                 alt="arrow"
-                $show={this.props.showCurrency}
+                $show={showCurrency}
               />
             </CurrencySymbol>
             <CartContainer onClick={this.toggleMiniCart}>
               <CartIcon src="/assets/images/cart-icon.svg" />
-              {!isEmpty(this.props.cartItems) && (
-                <CartBadge>
-                  {cartService.countItems(this.props.cartItems)}
-                </CartBadge>
+              {!isEmpty(cartItems) && (
+                <CartBadge>{cartService.countItems(cartItems)}</CartBadge>
               )}
             </CartContainer>
           </Wrapper>

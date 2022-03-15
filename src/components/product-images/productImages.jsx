@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {
-  Container,
-  Thumbnails,
-  Thumbnail,
-  ThumbnailWrapper,
-  BigImageWrapper,
   BigImage,
+  BigImageWrapper,
+  Container,
+  Thumbnail,
+  Thumbnails,
+  ThumbnailWrapper,
 } from "./styles";
 
 class ProductImages extends Component {
@@ -21,6 +21,7 @@ class ProductImages extends Component {
 
   render() {
     const { images } = this.props;
+    const { selectedImage } = this.state;
 
     return (
       <Container>
@@ -32,7 +33,7 @@ class ProductImages extends Component {
           ))}
         </Thumbnails>
         <BigImageWrapper>
-          <BigImage src={this.state.selectedImage} />
+          <BigImage src={selectedImage} />
         </BigImageWrapper>
       </Container>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../components/header/header";
-import Backdrop from "../../components/UI/backdrop/backdrop";
 import SideDrawer from "../../components/side-drawer/sideDrawer";
+import Backdrop from "../../components/UI/backdrop/backdrop";
 import { storeConsumer } from "../../store";
 import Container from "./styles";
 
@@ -41,26 +41,26 @@ class Layout extends Component {
   }
 
   render() {
+    const { showMiniCart, closeMiniCart, children } = this.props;
+    const { showSideDrawer, browserSize } = this.state;
+
     return (
       <React.Fragment>
-        {this.state.browserSize <= 550 && (
+        {browserSize <= 550 && (
           <SideDrawer
             onClose={this.sideDrawerClosedHandler}
-            open={this.state.showSideDrawer}
+            open={showSideDrawer}
           />
         )}
         <Header
           onSideDrawerClick={this.sideDrawerToggleHandler}
-          openSideDrawer={this.state.showSideDrawer}
-          browserSize={this.state.browserSize}
+          openSideDrawer={showSideDrawer}
+          browserSize={browserSize}
         />
 
         <Container>
-          <Backdrop
-            show={this.props.showMiniCart}
-            clicked={this.props.closeMiniCart}
-          />
-          {this.props.children}
+          <Backdrop show={showMiniCart} clicked={closeMiniCart} />
+          {children}
         </Container>
       </React.Fragment>
     );

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import CartProducts from "../cart-products/cartProducts";
 import * as cartService from "../../../services/cart-service";
 import { storeConsumer } from "../../../store";
 import { isEmpty, pluralize } from "../../../utils";
+import CartProducts from "../cart-products/cartProducts";
 import {
+  Actions,
+  Anchor,
   Container,
+  Label,
+  Price,
   Title,
   TotalItems,
   TotalPrice,
-  Label,
-  Price,
-  Actions,
-  Anchor,
 } from "./styles";
 
 class MiniCart extends Component {
@@ -52,7 +52,7 @@ class MiniCart extends Component {
   }
 
   render() {
-    const { showMiniCart, cartItems } = this.props;
+    const { showMiniCart, cartItems, closeMiniCart } = this.props;
 
     return (
       <Container className={showMiniCart && "open"}>
@@ -61,13 +61,13 @@ class MiniCart extends Component {
         </Title>
         {this.renderProducts()}
         <Actions>
-          <Anchor to="/cart" onClick={this.props.closeMiniCart}>
+          <Anchor to="/cart" onClick={closeMiniCart}>
             View Bag
           </Anchor>
           <Anchor
             to="/checkout"
             disabled={isEmpty(cartItems)}
-            onClick={this.props.closeMiniCart}
+            onClick={closeMiniCart}
           >
             Check Out
           </Anchor>

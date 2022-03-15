@@ -25,7 +25,7 @@ const CartContainer = styled.div`
 `;
 
 const Container = styled.div`
-  opacity: ${(props) => (props.$inStock ? 1 : 0.7)};
+  opacity: ${({ $inStock }) => ($inStock ? 1 : 0.7)};
   padding: 1rem;
   transition: transform 0.3s ease-in-out;
   position: relative;

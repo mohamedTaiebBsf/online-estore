@@ -9,11 +9,11 @@ const Container = styled.div`
   padding: 1rem;
   left: 50%;
   top: 5rem;
-  transform: ${(props) =>
-    props.$show ? "translate(-50%, 0)" : "translate(-50%, -100vh)"};
-  visibility: ${(props) => (props.$show ? "visible" : "hidden")};
-  opacity: ${(props) => (props.$show ? 1 : 0)};
-  pointer-events: ${(props) => (props.$show ? "all" : "none")};
+  transform: ${({ $show }) =>
+    $show ? "translate(-50%, 0)" : "translate(-50%, -100vh)"};
+  visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  pointer-events: ${({ $show }) => ($show ? "all" : "none")};
   transition: all 0.4s ease-in-out;
   -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.53);
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.53);

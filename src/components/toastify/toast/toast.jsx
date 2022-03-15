@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Message, CloseIcon, ProgressBar } from "./styles";
+import { CloseIcon, Container, Message, ProgressBar } from "./styles";
 
 class Toast extends Component {
   state = {
@@ -36,16 +36,19 @@ class Toast extends Component {
   };
 
   render() {
+    const { mode, message, onClose } = this.props;
+    const { exitedToast, width } = this.state;
+
     return (
       <Container
-        $mode={this.props.mode}
-        $exited={this.state.exitedToast}
+        $mode={mode}
+        $exited={exitedToast}
         onMouseEnter={this.handlePauseTimer}
         onMouseLeave={this.handleStartTimer}
       >
-        <Message>{this.props.message}</Message>
-        <CloseIcon onClick={this.props.onClose}>x</CloseIcon>
-        <ProgressBar style={{ width: `${this.state.width}%` }} />
+        <Message>{message}</Message>
+        <CloseIcon onClick={onClose}>x</CloseIcon>
+        <ProgressBar style={{ width: `${width}%` }} />
       </Container>
     );
   }

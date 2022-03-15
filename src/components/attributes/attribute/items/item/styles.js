@@ -9,20 +9,14 @@ const Container = styled.div`
   margin-right: 0.75rem;
   cursor: pointer;
   position: relative;
-  background: ${(props) =>
-    props.$isColor
-      ? props.$isColor
-      : props.$selected
-      ? "var(--black)"
-      : "transparent"};
+  background: ${({ $isColor, $selected }) =>
+    $isColor ? $isColor : $selected ? "var(--black)" : "transparent"};
 
-  color: ${(props) =>
-    props.$selected && !props.$isColor ? "var(--white)" : "auto"};
+  color: ${({ $isColor, $selected }) =>
+    $selected && !$isColor ? "var(--white)" : "auto"};
 
-  border: ${(props) =>
-    props.$isColor && props.$selected
-      ? "0.3125rem solid var(--black)"
-      : "auto"};
+  border: ${({ $isColor, $selected }) =>
+    $isColor && $selected ? "0.3125rem solid var(--black)" : "auto"};
 
   &:first-child {
     margin-left: 0;
