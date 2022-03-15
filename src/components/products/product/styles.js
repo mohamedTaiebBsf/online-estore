@@ -29,6 +29,7 @@ const Container = styled.div`
   padding: 1rem;
   transition: transform 0.3s ease-in-out;
   position: relative;
+  width: 100%;
 
   &:hover {
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
