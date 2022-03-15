@@ -63,15 +63,17 @@ const BigImageWrapper = styled.div`
   height: 25rem;
   margin-right: 2rem;
   cursor: pointer;
+  text-align: center;
 
   @media (max-width: 34.375rem) {
     order: 1;
+    margin-bottom: 1rem;
   }
 `;
 
 const BigImage = styled.img`
-  width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export {

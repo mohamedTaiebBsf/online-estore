@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Image = styled.img`
-  width: 100%;
-  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
   transition: transform 0.3s ease-in-out;
 `;
 
@@ -54,6 +54,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   height: 18.75rem;
   position: relative;
+  text-align: center;
 `;
 
 const Title = styled.p`
