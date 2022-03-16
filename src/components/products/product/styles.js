@@ -5,6 +5,7 @@ const Image = styled.img`
   max-height: 100%;
   max-width: 100%;
   transition: transform 0.3s ease-in-out;
+  outline: 1px solid transparent;
 `;
 
 const CartContainer = styled.div`
