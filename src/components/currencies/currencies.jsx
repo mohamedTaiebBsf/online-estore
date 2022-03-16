@@ -5,6 +5,23 @@ import Currency from "./currency/currency";
 import { Container, spinnerStyles } from "./styles";
 
 class Currencies extends Component {
+  curreniesRef = React.createRef();
+
+  handleClickOutside = (event) => {
+    const currToggDOM = document.getElementById("currency-toggler");
+    const cartSymbolDOM = document.getElementById("cart-symbol");
+
+    if (
+      this.curreniesRef &&
+      !this.curreniesRef.current.contains(event.target) &&
+      currToggDOM !== event.target &&
+      !currToggDOM.contains(event.target) &&
+      cartSymbolDOM !== event.target
+    ) {
+      this.props.closeCurr();
+    }
+  };
+
   shouldComponentUpdate(nextProps, nextState) {
     const { currency, showCurrency } = this.props;
 
@@ -22,7 +39,7 @@ class Currencies extends Component {
     const { currencies } = data;
 
     return (
-      <Container className={showCurrency && "open"}>
+      <Container className={showCurrency && "open"} ref={this.curreniesRef}>
         {currencies.map((currency) => (
           <Currency
             key={currency.label}
@@ -33,6 +50,14 @@ class Currencies extends Component {
         ))}
       </Container>
     );
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 }
 

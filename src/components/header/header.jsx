@@ -89,7 +89,7 @@ class Header extends Component {
             <Logo onClick={() => setCateg("all")} />
           </LogoWrapper>
           <Wrapper>
-            <CurrencySymbol onClick={this.toggleCurrency}>
+            <CurrencySymbol onClick={this.toggleCurrency} id="currency-toggler">
               {currency}
               <Arrow
                 src="/assets/images/arrow.svg"
@@ -98,7 +98,7 @@ class Header extends Component {
               />
             </CurrencySymbol>
             <CartContainer onClick={this.toggleMiniCart}>
-              <CartIcon src="/assets/images/cart-icon.svg" />
+              <CartIcon src="/assets/images/cart-icon.svg" id="cart-symbol" />
               {!isEmpty(cartItems) && (
                 <CartBadge>{cartService.countItems(cartItems)}</CartBadge>
               )}
