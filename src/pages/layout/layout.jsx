@@ -94,6 +94,7 @@ class Layout extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateBrowserSize);
+    document.body.style.overflow = "";
   }
 
   componentDidMount() {

@@ -3,7 +3,7 @@
   "author": {
     "name": "Mohamed Taieb Boussoffara"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.8",
