@@ -74,19 +74,19 @@ class Header extends Component {
       onSideDrawerClick,
       openSideDrawer,
       browserSize,
-      setCateg,
       currency,
       showCurrency,
       cartItems,
+      setCategory,
     } = this.props;
 
     return (
       <Container>
         <Wrapper>
           <SideToggle toggleSide={onSideDrawerClick} open={openSideDrawer} />
-          {browserSize > 550 && <Categories />}
+          {browserSize > 550 && <Categories setCategory={setCategory} />}
           <LogoWrapper>
-            <Logo onClick={() => setCateg("all")} />
+            <Logo onClick={() => setCategory("all")} />
           </LogoWrapper>
           <Wrapper>
             <CurrencySymbol onClick={this.toggleCurrency} id="currency-toggler">

@@ -39,6 +39,16 @@ class Layout extends Component {
     this.setState({ browserSize: window.innerWidth });
   };
 
+  setCategory = (name) => {
+    const { setCateg, showMiniCart, closeMiniCart } = this.props;
+
+    setCateg(name);
+
+    if (showMiniCart) {
+      closeMiniCart();
+    }
+  };
+
   shouldComponentUpdate(nextProps, nextState) {
     const { showMiniCart, children } = this.props;
     const { showSideDrawer, browserSize } = this.state;
@@ -64,12 +74,14 @@ class Layout extends Component {
           <SideDrawer
             onClose={this.sideDrawerClosedHandler}
             open={showSideDrawer}
+            setCategory={this.setCategory}
           />
         )}
         <Header
           onSideDrawerClick={this.sideDrawerToggleHandler}
           openSideDrawer={showSideDrawer}
           browserSize={browserSize}
+          setCategory={this.setCategory}
         />
 
         <Container>

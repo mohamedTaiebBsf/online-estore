@@ -6,7 +6,7 @@ import { Container, LogoWrapper } from "./styles";
 
 class SideDrawer extends Component {
   render() {
-    const { open, onClose } = this.props;
+    const { open, onClose, setCategory } = this.props;
 
     return (
       <React.Fragment>
@@ -15,7 +15,7 @@ class SideDrawer extends Component {
           <LogoWrapper>
             <Logo />
           </LogoWrapper>
-          <Categories sideDrawerClose={onClose} />
+          <Categories sideDrawerClose={onClose} setCategory={setCategory} />
         </Container>
       </React.Fragment>
     );

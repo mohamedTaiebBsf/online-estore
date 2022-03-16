@@ -1,6 +1,9 @@
 {
-  "name": "client",
-  "version": "1.0.2",
+  "name": "e-sotre",
+  "author": {
+    "name": "Mohamed Taieb Boussoffara"
+  },
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.8",

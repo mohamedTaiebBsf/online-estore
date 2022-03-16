@@ -14,7 +14,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { data, categ, setCateg, sideDrawerClose } = this.props;
+    const { data, categ, setCategory, sideDrawerClose } = this.props;
     const { categories } = data;
 
     return (
@@ -24,7 +24,7 @@ class Categories extends Component {
             key={index}
             category={category}
             active={categ === category.name}
-            setCateg={setCateg}
+            setCateg={setCategory}
             sideDrawerClose={sideDrawerClose}
           />
         ))}
