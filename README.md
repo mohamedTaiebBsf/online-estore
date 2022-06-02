@@ -8,7 +8,7 @@ Click [here](https://scandiweb-online-estore.herokuapp.com) to visualize the dem
 
 ## Tech
 
-- [React.js]([https://angularjs.org/](https://fr.reactjs.org/))
+- [React.js](https://fr.reactjs.org/)
 - [Redux](https://redux.js.org/)
 - [Graphql](https://graphql.org/)
 - [Apollo Client](https://www.apollographql.com/docs/react/)
