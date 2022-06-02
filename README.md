@@ -2,19 +2,17 @@
 
 > <img src="https://media.cdn.teamtailor.com/images/s3/teamtailor-production/logotype-v1/image_uploads/bdfccb87-9d38-4234-be31-e3d209b9516b/original.png" alt="scandiweb" width="80" /> _React Assignment_ ✨✨✨
 
-## Demo
+## Demo 🚀
 
-https://scandiweb-online-estore.herokuapp.com
+Click [here](https://scandiweb-online-estore.herokuapp.com) to visualize the demo.
 
 ## Tech
 
-<div style="margin-bottom: 25px; display: flex; align-items:center;">
-    <img src="https://scandiweb.com/assets/images/react/react-logo-inline.svg" width="80" style="margin-right:15px;" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Redux_Logo.png" width="80" style="margin-right:15px;object-fit:cover" />
-    <img src="https://www.vectorlogo.zone/logos/graphql/graphql-ar21.svg" width="90" style="margin-right:15px; margin-bottom:-5px;" />
-    <img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-1.svg" width="80" style="margin-right:15px;" />
-    <img src="https://alley.co/wp-content/uploads/2021/01/atom.png" width="50"   />
-</div>
+- [React.js]([https://angularjs.org/](https://fr.reactjs.org/))
+- [Redux](https://redux.js.org/)
+- [Graphql](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+- [Styled components](https://styled-components.com/)
 
 ## _Installation_
 
